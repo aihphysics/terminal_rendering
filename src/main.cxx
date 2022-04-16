@@ -1,18 +1,19 @@
-#include <chrono>
+#include <cstdlib>
 #include <main.hxx>
 
-const int screen_x = 57;
+const int screen_x = 237;
 const int screen_y = 57;
 
-//const float theta_spacing = 0.07;//*(57.0/100.0);
-//const float phi_spacing = 0.2;//*(50.7/100.0);
 const float theta_spacing = 0.01;
 const float phi_spacing = 0.01;
 
-
-const float R1 = 1;
+const float R1 = 0.3;
 const float R2 = 2;
 const float K2 = 1000;
+
+//const float K1 = screen_x*K2*3/(8*(R1+R2));
+const float K1 = screen_y*K2*1/(4*(R1+R2));
+
 // K1 based of screen size
 // VERY QUESTIONABLE {
 // screen size can be found from environment variables
@@ -22,9 +23,10 @@ const float K2 = 1000;
 // }
 // maximal x distance at edge of object, R1 + R2
 // want this displaced towards the edge of the screen
-const float K1 = screen_x*K2*3/(8*(R1+R2));
+
 
 void render_frame(float A, float B){
+  
 
   float cos_A{cos(A)}, sin_A{sin(A)};
   float cos_B{cos(B)}, sin_B{sin(B)};
@@ -86,13 +88,13 @@ void render_frame(float A, float B){
 }
 
 
-int main(int argc, char * argv[]){
+int main(int argc, char * argv[], char * env[]){
 
   std::chrono::system_clock::time_point start;
   std::chrono::system_clock::time_point check;
   double ms;
   
-  for (int i = 0; i < 1000; i++){
+  for (int i = 0; i < 1e10; i++){
       //render_frame(i/100.0,i/100.0);
       render_frame(i/100.0,i/100.0);
       start  = std::chrono::high_resolution_clock::now();
@@ -102,5 +104,6 @@ int main(int argc, char * argv[]){
       } while ( ms < 10);
   }
 
+ 
   return 0;
 }

@@ -7,11 +7,9 @@ project(donut)
 
 include_directories(inc)
 
-set(src src/main.cxx)
+set(src src/main.cxx src/sphere.cxx src/light.cxx)
 add_executable( donut ${src})
-##add_compile_options(-std=c++20 -Werror -Wall -pedantic -Wextra -O3)
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3)
-
 
 
 IF( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/../compile_commands.json" )
