@@ -7,7 +7,7 @@ project(term_renderer)
 
 include_directories(inc)
 
-set(src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx)
+set(src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx src/renderable.cxx)
 add_executable( t_rend ${src})
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3)
 
