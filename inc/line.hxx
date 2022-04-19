@@ -1,0 +1,16 @@
+#include <math.h>
+
+#ifndef rend_obj
+#define rend_obj
+#include <renderable.hxx>
+#endif
+
+class line : public renderable{
+  public:
+    float len;
+    line *connections[15];
+    line (float l, float x, float y, float z){
+      len = l; x_c = x; y_c = y; z_c = z;
+    }
+    void add_connection(line next_line);// need to add checking that this connects to the current ends of a line;
+};

@@ -5,6 +5,11 @@
 #include <light.hxx>
 #endif
 
+#ifndef common_hxx 
+#define common_hxx
+#include <common.hxx>
+#endif
+
 
 
 class renderable {
@@ -16,9 +21,9 @@ class renderable {
     float v_rx, v_ry, v_rz;
     float s_K1, s_K2;
     light * light_source;
-    //screen * terminal;
+    screen * term;
     renderable(){ 
       x_c = 0, y_c = 0, z_c = 0;
     }
-    //virtual void draw(char (&output)[237][57], float (&z_buffer)[237][57]);
+    virtual void draw(char (&output)[237][57], float (&z_buffer)[237][57]) = 0;
 };

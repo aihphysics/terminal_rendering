@@ -31,6 +31,7 @@ class torus : public renderable {
 
     }
 
+    void draw(char (&output)[237][57], float (&z_buffer)[237][57]) override;
     void draw(char (&output)[237][57], float (&z_buffer)[237][57], float A, float B);
-  
+
 };

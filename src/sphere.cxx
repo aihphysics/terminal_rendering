@@ -17,10 +17,6 @@ void sphere::draw(char (&output)[237][57], float (&z_buffer)[237][57]){
       int x_p = (int) (237.0/2.0 + s_K1*z_inv*x);
       int y_p = (int) (57.0/2.0 - s_K1*z_inv*y);
 
-
-      //float L = c_light.x_dir*rad*sin_theta*cos_phi
-      //          + c_light.y_dir*rad*sin_theta*sin_phi
-      //          + c_light.z_dir*rad*cos_theta;
       float L = light_source->x_dir*cos_theta*cos_phi
               + light_source->y_dir*sin_theta
               + light_source->z_dir*cos_theta*sin_phi;
@@ -30,7 +26,6 @@ void sphere::draw(char (&output)[237][57], float (&z_buffer)[237][57]){
       if ( z_inv < z_buffer[x_p][y_p]) continue;
       z_buffer[x_p][y_p] = z_inv;
       int L_idx = L*8;
-      //std::cout << L_idx << std::endl;
       output[x_p][y_p] = ".,-~:;=!*#$@"[L_idx];
 
     }
