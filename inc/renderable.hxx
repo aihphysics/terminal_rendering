@@ -1,16 +1,11 @@
 #include <math.h>
-
-#ifndef light_obj
-#define light_obj
 #include <light.hxx>
-#endif
-
-#ifndef common_hxx 
-#define common_hxx
 #include <common.hxx>
-#endif
 
 
+
+#ifndef rend_obj
+#define rend_obj
 
 class renderable {
   public:
@@ -25,5 +20,7 @@ class renderable {
     renderable(){ 
       x_c = 0, y_c = 0, z_c = 0;
     }
-    virtual void draw(char (&output)[237][57], float (&z_buffer)[237][57]) = 0;
+    virtual void draw(char (&output)[421][109], float (&z_buffer)[421][109]) = 0;
 };
+
+#endif

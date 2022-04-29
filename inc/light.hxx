@@ -1,3 +1,5 @@
+#ifndef light_obj
+#define light_obj
 
 class light{
   public:
@@ -6,3 +8,5 @@ class light{
     light();
     light(float x, float y, float z);
 };
+
+#endif

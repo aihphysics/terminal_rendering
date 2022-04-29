@@ -1,15 +1,11 @@
 #include <math.h>
-
-#ifndef rend_obj
-#define rend_obj
 #include <renderable.hxx>
-#endif
 
 class sphere : public renderable{
   private:
     float rad;
-    const float screen_x = 237;
-    const float screen_y = 57;
+    const float screen_x = 421;
+    const float screen_y = 109;
 
 
   public:
@@ -24,5 +20,5 @@ class sphere : public renderable{
       s_K1 = screen_y*K2*(1/0.8);
     }
 
-    void draw(char (&output)[237][57], float (&z_buffer)[237][57]);
+    void draw(char (&output)[421][109], float (&z_buffer)[421][109]);
 };

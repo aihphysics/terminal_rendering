@@ -1,15 +1,11 @@
 #include <math.h>
 #include <stdio.h>
-
-#ifndef rend_obj
-#define rend_obj
 #include <renderable.hxx>
-#endif
 
 class torus : public renderable {
   private:
-    const float screen_x = 237;
-    const float screen_y = 57;
+    const float screen_x = 421;
+    const float screen_y = 109;
     float r_1;
     float r_2;
     float s_K2;
@@ -31,7 +27,7 @@ class torus : public renderable {
 
     }
 
-    void draw(char (&output)[237][57], float (&z_buffer)[237][57]) override;
-    void draw(char (&output)[237][57], float (&z_buffer)[237][57], float A, float B);
+    void draw(char (&output)[421][109], float (&z_buffer)[421][109]) override;
+    void draw(char (&output)[421][109], float (&z_buffer)[421][109], float A, float B);
 
 };

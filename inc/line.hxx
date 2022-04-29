@@ -1,9 +1,6 @@
 #include <math.h>
 
-#ifndef rend_obj
-#define rend_obj
 #include <renderable.hxx>
-#endif
 
 class line : public renderable{
   public:

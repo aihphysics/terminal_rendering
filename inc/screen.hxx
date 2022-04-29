@@ -1,14 +1,11 @@
 
-#ifndef common_hxx 
-#define common_hxx
 #include <common.hxx>
-#endif
 
 class screen {
   
   public:
     // screen dimensions
-    int screen_x{237}, screen_y{57};
+    int screen_x{421}, screen_y{109};
     // origin coordinates, not currently used, should be 0
     float x_origin, y_origin, z_origin;
     // screen co-ordinates
