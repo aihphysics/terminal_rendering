@@ -4,8 +4,8 @@
 class sphere : public renderable{
   private:
     float rad;
-    const float screen_x = 421;
-    const float screen_y = 109;
+    const float screen_x = screen_width;
+    const float screen_y = screen_height;
 
 
   public:
@@ -20,5 +20,5 @@ class sphere : public renderable{
       s_K1 = screen_y*K2*(1/0.8);
     }
 
-    void draw(char (&output)[421][109], float (&z_buffer)[421][109]);
+    void draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]);
 };

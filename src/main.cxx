@@ -10,9 +10,10 @@ using namespace std::chrono_literals;
 //const int screen_x = 237;
 //const int screen_y = 57;
 
-const int screen_x = 421;
-const int screen_y = 109;
-
+//const int screen_x = 421;
+//const int screen_y = 109;
+const int screen_x = (int) screen_width;
+const int screen_y = (int) screen_height;
 
 //const float K1 = screen_x*K2*3/(8*(R1+R2));
 //const float K2 = 1000;
@@ -20,12 +21,12 @@ const float K2 = 50;
 //const float K1 = screen_y*K2*1/0.4;
 
 
-void loop(torus & tor, sphere & sph, char (&out)[421][109], float (&z)[421][109]){
+void loop(torus & tor, sphere & sph, char (&out)[(int) screen_width][(int) screen_height], float (&z)[(int) screen_width][(int) screen_height]){
 
   for (int i = 0; i < 1e30; i++){
   
     tor.draw(out, z,i/20.0,i/20.0);
-    sph.draw(out, z);
+    //sph.draw(out, z);
 
     printf("\x1b[H");
     for (int j = 0; j < screen_y; j++) {
@@ -56,11 +57,11 @@ int main(int argc, char * argv[], char * env[]){
 	std::fill_n(&z_buffer[0][0], sizeof(z_buffer)/sizeof(z_buffer[0][0]),0);
 
   // create timers
-  std::chrono::system_clock::time_point start;
-  std::chrono::system_clock::time_point check;
-  double ms;
+  //std::chrono::system_clock::time_point start;
+  //std::chrono::system_clock::time_point check;
+  //double ms;
 
-  light light_source(0,1,-1);
+  light light_source( 0, 1, -1);
 
   // create objects
   torus orbiting_torus(   0.3/25.0,   6.0/25.0);
@@ -78,10 +79,12 @@ int main(int argc, char * argv[], char * env[]){
   //objects.push_back(&orbiting_torus);
   //objects.push_back(&central_sphere);
   
-  std::thread ex_loop(loop, std::ref(orbiting_torus),std::ref(test_sphere), std::ref(output),std::ref(z_buffer));
+  std::thread ex_loop(loop, std::ref(orbiting_torus), std::ref(test_sphere), std::ref(output), std::ref(z_buffer));
 
   ex_loop.join();
 
+  return 0;
+}
 
 
   
@@ -124,8 +127,7 @@ int main(int argc, char * argv[], char * env[]){
 //  }
 
  
-  return 0;
-}
+
 
 // IDEAS THAT NEED IMPLEMENTED
 // PROPER HEADER GUARDS -- DONE

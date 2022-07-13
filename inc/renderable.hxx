@@ -20,7 +20,7 @@ class renderable {
     renderable(){ 
       x_c = 0, y_c = 0, z_c = 0;
     }
-    virtual void draw(char (&output)[421][109], float (&z_buffer)[421][109]) = 0;
+    virtual void draw(char (&output)[(int) screen_width][int (screen_height)], float (&z_buffer)[(int) screen_width][(int) screen_height]) = 0;
 };
 
 #endif

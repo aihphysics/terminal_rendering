@@ -1,6 +1,6 @@
 #include <sphere.hxx>
 
-void sphere::draw(char (&output)[421][109], float (&z_buffer)[421][109]){
+void sphere::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]){
 
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};
@@ -22,7 +22,7 @@ void sphere::draw(char (&output)[421][109], float (&z_buffer)[421][109]){
               + light_source->z_dir*cos_theta*sin_phi;
 
       if ( L < 0 ) continue;
-      if (x_p > screen_x || y_p > screen_y || x_p < 0 || y_p < 0) continue;
+      if (x_p > screen_width || y_p > screen_height || x_p < 0 || y_p < 0) continue;
       if ( z_inv < z_buffer[x_p][y_p]) continue;
       z_buffer[x_p][y_p] = z_inv;
       int L_idx = L*8;

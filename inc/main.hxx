@@ -9,3 +9,4 @@
 
 #include <light.hxx>
 #include <renderable.hxx>
+#include <common.hxx>

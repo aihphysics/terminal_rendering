@@ -1,7 +1,7 @@
 #include <torus.hxx>
 
 
-void torus::draw(char (&output)[421][109], float (&z_buffer)[421][109], float A, float B){
+void torus::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height], float A, float B){
 
   float cos_A{cos(A)}, sin_A{sin(A)};
   float cos_B{cos(B)}, sin_B{sin(B)};
@@ -33,7 +33,7 @@ void torus::draw(char (&output)[421][109], float (&z_buffer)[421][109], float A,
       // luminance and z buffer checks
       if ( L < 0 ) continue;
       //if (x_p > screen_x ||  y_p > screen_y ) continue;
-      if (x_p > 421 || y_p > 109 || x_p < 0 || y_p < 0) continue;
+      if (x_p > screen_width || y_p > screen_height || x_p < 0 || y_p < 0) continue;
       if (z_inv < z_buffer[x_p][y_p] ) continue;
       z_buffer[x_p][y_p] = z_inv;
       int L_idx = L*8;
@@ -42,7 +42,7 @@ void torus::draw(char (&output)[421][109], float (&z_buffer)[421][109], float A,
   }
 }
 
-void torus::draw(char (&output)[421][109], float (&z_buffer)[421][109]){
+void torus::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]){
 
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};
@@ -70,7 +70,7 @@ void torus::draw(char (&output)[421][109], float (&z_buffer)[421][109]){
 
       // luminance, screen and z buffer checks
       if ( L < 0 ) continue;
-      if (x_p > 421 || y_p > 109 || x_p < 0 || y_p < 0) continue;
+      if (x_p > screen_width || y_p > screen_height || x_p < 0 || y_p < 0) continue;
       if (z_inv < z_buffer[x_p][y_p] ) continue;
       z_buffer[x_p][y_p] = z_inv;
       int L_idx = L*8;
