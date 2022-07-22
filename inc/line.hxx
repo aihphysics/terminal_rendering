@@ -1,6 +1,8 @@
 #include <math.h>
-
 #include <renderable.hxx>
+
+#ifndef line_class
+#define line_class
 
 class line : public renderable{
   public:
@@ -11,3 +13,5 @@ class line : public renderable{
     }
     void add_connection(line next_line);// need to add checking that this connects to the current ends of a line;
 };
+
+#endif

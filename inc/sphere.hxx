@@ -1,6 +1,9 @@
 #include <math.h>
 #include <renderable.hxx>
 
+#ifndef sphere_class
+#define sphere_class
+
 class sphere : public renderable{
   private:
     float radius;
@@ -19,3 +22,5 @@ class sphere : public renderable{
     void draw();
 
 };
+
+#endif

@@ -1,5 +1,5 @@
-#ifndef light_obj
-#define light_obj
+#ifndef light_class
+#define light_class
 
 class light{
   public:

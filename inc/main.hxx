@@ -1,3 +1,6 @@
+#ifndef main_hxx
+#define main_hxx
+
 #include <stdlib.h>
 #include <math.h>
 #include <algorithm>
@@ -10,3 +13,5 @@
 #include <light.hxx>
 #include <renderable.hxx>
 #include <screen.hxx>
+
+#endif
