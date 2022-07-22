@@ -7,6 +7,7 @@
 #include <vector>
 #include <thread>
 
-#include <light.hxx>
-#include <renderable.hxx>
 #include <common.hxx>
+#include <light.hxx>
+#include <screen.hxx>
+#include <renderable.hxx>

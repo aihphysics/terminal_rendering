@@ -3,22 +3,17 @@
 
 class sphere : public renderable{
   private:
-    float rad;
-    const float screen_x = screen_width;
-    const float screen_y = screen_height;
-
+    float radius;
 
   public:
-    sphere(float r, float x, float y, float z, light * main_light){
-      rad = r; x_c = x; y_c = y; z_c = z;  
-      light_source = main_light;
+    sphere(float radius, float x, float y, float z, light * light_source){
+      this->radius = rad; 
+      this->x = x; 
+      this->y = y;
+      this->z = z;  
+      this->light_source = light_source;
     }
 
-    void set_constants(float K2){
-      s_K2 = K2;
-      //s_K1 = 57*K2*1/(8*(rad));
-      s_K1 = screen_y*K2*(1/0.8);
-    }
+    void draw( char * output, float * z_buffer );
 
-    void draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]);
 };

@@ -1,6 +1,6 @@
 #include <sphere.hxx>
 
-void sphere::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]){
+void sphere::draw(char * output, float * z_buffer ){
 
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};

@@ -1,7 +1,7 @@
 #include <torus.hxx>
 
 
-void torus::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height], float A, float B){
+void torus::draw( char * output, float * z_buffer, float A, float B){
 
   float cos_A{cos(A)}, sin_A{sin(A)};
   float cos_B{cos(B)}, sin_B{sin(B)};
@@ -42,7 +42,8 @@ void torus::draw(char (&output)[(int) screen_width][(int) screen_height], float 
   }
 }
 
-void torus::draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]){
+
+void torus::draw( char * output, float * z_buffer ){
 
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};

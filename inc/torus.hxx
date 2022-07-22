@@ -4,15 +4,15 @@
 
 class torus : public renderable {
   private:
-    const float screen_x = screen_width;
-    const float screen_y = screen_height;
+    screen * terminal;
     float r_1;
     float r_2;
     float s_K2;
     float s_K1;
 
   public:
-    torus(float r_tube, float r_inner){
+    torus(screen * term, float r_tube, float r_inner){
+      terminal = term;
       r_1 = r_tube; r_2 = r_inner;
     }
     void set_constants(float K2){
@@ -27,7 +27,7 @@ class torus : public renderable {
 
     }
 
-    void draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height]) override;
-    void draw(char (&output)[(int) screen_width][(int) screen_height], float (&z_buffer)[(int) screen_width][(int) screen_height], float A, float B);
+    void draw(char * output, float * z_buffer) override;
+    void draw(char * output, float * z_buffer, float A, float B);
 
 };

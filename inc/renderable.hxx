@@ -1,6 +1,6 @@
 #include <math.h>
-#include <light.hxx>
 #include <common.hxx>
+#include <light.hxx>
 
 
 
@@ -8,19 +8,22 @@
 #define rend_obj
 
 class renderable {
-  public:
-    float x_c, y_c, z_c;
+
+  protected:
+    float x, y, z;
     float v_x, v_y, v_z;
     float a_x, a_y, a_z;
     float r_x, r_y, r_z;
     float v_rx, v_ry, v_rz;
-    float s_K1, s_K2;
     light * light_source;
-    screen * term;
+    screen * terminal;
+
+  public:
     renderable(){ 
-      x_c = 0, y_c = 0, z_c = 0;
+      x = 0, y = 0, z = 0;
     }
-    virtual void draw(char (&output)[(int) screen_width][int (screen_height)], float (&z_buffer)[(int) screen_width][(int) screen_height]) = 0;
+    virtual void draw( char * output, float * z_buffer ) = 0;
+
 };
 
 #endif
