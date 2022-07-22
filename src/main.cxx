@@ -12,14 +12,15 @@ int main(int argc, char * argv[], char * env[]){
   // create the screen, must have exported shell variables to environment;
   int screen_width  = std::atoi(std::getenv("COLUMNS"));
   int screen_height = std::atoi(std::getenv("LINES"));
-  float K2 = 50;
+  // 50 is flat, 2 is tolerable, 1.0 is dizzying
+  float K2 = 1.0;
   float K1 = screen_height*K2*(1/0.8);
 
   screen terminal( K1, K2, screen_width, screen_height );
 
   // create and fill buffers
-  char * output = new char[screen_width*screen_height]();
-  float * z_buffer = new float[screen_width*screen_height]();
+  //char * output = new char[screen_width*screen_height]();
+  //float * z_buffer = new float[screen_width*screen_height]();
 
   // create timers
   //std::chrono::system_clock::time_point start;
@@ -27,9 +28,13 @@ int main(int argc, char * argv[], char * env[]){
   //double ms;
   //3.3/25 = 0.132
 
-  light light_source( 0, 1, -1 );
+
+  light light_source( 0.5, 1.0, -1 );
   torus o_torus( &terminal,  0.3/25.0, 6.0/25.0 );
   sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
+  //sphere left_sphere( &terminal, &light_source, 0.1, 0.3,  0.0,  0.0 );
+  //sphere br_sphere( &terminal, &light_source, 0.1, -0.6,  -0.3,  0.0 );
+  //sphere fb_sphere( &terminal, &light_source, 0.1, 0.0,  -0.1, -0.3 );
   //sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
   //sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
   //sphere central_sphere(  3.3/25.0,   0.0,  0.0,  0.0,    &light_source);
@@ -50,21 +55,12 @@ int main(int argc, char * argv[], char * env[]){
   //
   for ( int i = 0; i < 1e30; i++ ){
   
-    o_torus.draw( output, z_buffer, i/20.0, i/20.0 );
-    //o_torus.draw( output, z_buffer );
-    test_sphere.draw( output, z_buffer );
+    o_torus.draw( i/20.0, i/20.0 );
+    test_sphere.draw( );
 
-    printf( "\x1b[H" );
-    for ( int y = 0; y < screen_height; y++ ){
-      for ( int x = 0; x < screen_width; x++ ){
-        putchar( output[screen_width * y + x] );
-        output[screen_width * y + x] = ' ';
-        z_buffer[screen_width * y + x] = 0;
-      }
-    }
-    
-
+    terminal.draw_frame();
     std::this_thread::sleep_for( 100ms );
+
   }
 
   return 0;

@@ -22,7 +22,9 @@ class renderable {
     renderable(){ 
       x_centre = 0, y_centre = 0, z_centre = 0;
     }
+    virtual void draw() = 0;
     virtual void draw( char * output, float * z_buffer ) = 0;
+
 
 };
 

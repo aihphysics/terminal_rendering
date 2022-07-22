@@ -16,5 +16,6 @@ class sphere : public renderable{
     }
 
     void draw( char * output, float * z_buffer );
+    void draw();
 
 };
