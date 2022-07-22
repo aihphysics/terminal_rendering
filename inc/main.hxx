@@ -9,5 +9,5 @@
 
 #include <common.hxx>
 #include <light.hxx>
-#include <screen.hxx>
 #include <renderable.hxx>
+#include <screen.hxx>

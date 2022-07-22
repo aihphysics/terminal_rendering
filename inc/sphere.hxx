@@ -6,12 +6,13 @@ class sphere : public renderable{
     float radius;
 
   public:
-    sphere(float radius, float x, float y, float z, light * light_source){
-      this->radius = rad; 
-      this->x = x; 
-      this->y = y;
-      this->z = z;  
+    sphere(screen * terminal, light * light_source, float radius, float x_centre, float y_centre, float z_centre ){
+      this->radius = radius; 
+      this->x_centre = x_centre; 
+      this->y_centre = y_centre;
+      this->z_centre = z_centre;  
       this->light_source = light_source;
+      this->terminal = terminal;
     }
 
     void draw( char * output, float * z_buffer );

@@ -1,6 +1,7 @@
 #include <main.hxx>
 
 #include <sphere.hxx>
+#include <thread>
 #include <torus.hxx>
 
 using namespace std::chrono_literals;
@@ -14,7 +15,7 @@ int main(int argc, char * argv[], char * env[]){
   float K2 = 50;
   float K1 = screen_height*K2*(1/0.8);
 
-  screen terminal( K1, K2 );
+  screen terminal( K1, K2, screen_width, screen_height );
 
   // create and fill buffers
   char * output = new char[screen_width*screen_height]();
@@ -24,18 +25,21 @@ int main(int argc, char * argv[], char * env[]){
   //std::chrono::system_clock::time_point start;
   //std::chrono::system_clock::time_point check;
   //double ms;
+  //3.3/25 = 0.132
 
   light light_source( 0, 1, -1 );
-  torus orbiting_torus(   0.3/25.0,   6.0/25.0 );
-  sphere test_sphere(  3.3/25.0,   0.0,  0.0,  0.0,    &light_source );
+  torus o_torus( &terminal,  0.3/25.0, 6.0/25.0 );
+  sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
+  //sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
+  //sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
   //sphere central_sphere(  3.3/25.0,   0.0,  0.0,  0.0,    &light_source);
   //sphere upper_sphere(    3.3/25.0,   0.0,  0.0,  0.0,    &light_source);
   //sphere lower_sphere(    3.3/25.0,  -0.5,  0.0,  0.0,    &light_source);
   //central_sphere.set_constants(K2);
   //upper_sphere.set_constants(K2);
   //lower_sphere.set_constants(K2);
-  orbiting_torus.set_constants(K2);
-  test_sphere.set_constants(K2);
+  //orbiting_torus.set_constants(K2);
+  //test_sphere.set_constants(K2);
   //std::vector<renderable*> objects;
   //objects.push_back(&orbiting_torus);
   //objects.push_back(&central_sphere);
@@ -44,22 +48,23 @@ int main(int argc, char * argv[], char * env[]){
 
   //ex_loop.join();
   //
-  for (int i = 0; i < 1e30; i++){
+  for ( int i = 0; i < 1e30; i++ ){
   
-    tor.draw(output, z_buffer,i/20.0,i/20.0);
-    //sph.draw(out, z);
+    o_torus.draw( output, z_buffer, i/20.0, i/20.0 );
+    //o_torus.draw( output, z_buffer );
+    test_sphere.draw( output, z_buffer );
 
-    printf("\x1b[H");
-    for (int y = 0; y < screen_height; y++) {
-      for (int x = 0; x < screen_width; x++) {
-        putchar(output[screen_width * y + x]);
-        output[screen_width * y + x] = 0;
+    printf( "\x1b[H" );
+    for ( int y = 0; y < screen_height; y++ ){
+      for ( int x = 0; x < screen_width; x++ ){
+        putchar( output[screen_width * y + x] );
+        output[screen_width * y + x] = ' ';
+        z_buffer[screen_width * y + x] = 0;
       }
-      putchar('\n');
     }
+    
 
-    std::this_thread::sleep_for(100ms);
-
+    std::this_thread::sleep_for( 100ms );
   }
 
   return 0;
