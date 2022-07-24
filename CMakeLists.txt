@@ -9,7 +9,7 @@ include_directories(inc)
 
 ##set(lines $ENV{LINES})
 ##set(columns $ENV{COLUMNS})
-set(src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx src/renderable.cxx src/screen.cxx)
+set(src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx src/renderable.cxx src/screen.cxx src/cube.cxx)
 add_executable( t_rend ${src})
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3 )
 ##add_definitions(-Dscreen_width=${columns} -Dscreen_height=${lines})

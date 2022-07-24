@@ -14,4 +14,10 @@
 #include <renderable.hxx>
 #include <screen.hxx>
 
+#include <sphere.hxx>
+#include <torus.hxx>
+#include <cube.hxx>
+
+
 #endif
+

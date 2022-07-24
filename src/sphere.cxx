@@ -1,5 +1,6 @@
 #include <sphere.hxx>
 
+#include <iostream>
 void sphere::draw(char * output, float * z_buffer ){
 
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
@@ -43,7 +44,6 @@ void sphere::draw(){
       float x = x_centre + radius*cos_theta*cos_phi;
       float y = y_centre + radius*sin_theta;
       float z = z_centre + terminal->K2 + radius*cos_theta*sin_phi;
-      
       
       float z_inv = 1/z;
       int x_p = (int) (terminal->screen_width/2.0 + terminal->K1*z_inv*x);

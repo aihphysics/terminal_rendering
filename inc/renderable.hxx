@@ -11,9 +11,10 @@ class renderable {
 
   protected:
     float x_centre, y_centre, z_centre;
+    float x_rotation, y_rotation, z_rotation;
     float v_x, v_y, v_z;
     float a_x, a_y, a_z;
-    float r_x, r_y, r_z;
+
     float v_rx, v_ry, v_rz;
     light * light_source;
     screen * terminal;
