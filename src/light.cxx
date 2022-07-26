@@ -4,6 +4,9 @@ light::light(){
   x_dir = 0; y_dir = 0; z_dir = 0; 
 }
 
-light::light(float x, float y, float z){
-  x_dir = x; y_dir = y; z_dir = z; 
+light::light(float x_dir, float y_dir, float z_dir){
+   float norm = std::sqrt( x_dir*x_dir + y_dir*y_dir + z_dir*z_dir);
+   this->x_dir = x_dir/norm;
+   this->y_dir = y_dir/norm;
+   this->z_dir = z_dir/norm;
 }

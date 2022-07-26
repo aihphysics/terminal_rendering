@@ -57,7 +57,7 @@ void sphere::draw(){
       if (x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;
       if ( z_inv < terminal->z_buffer[terminal->screen_width * y_p + x_p]) continue;
       terminal->z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
-      int L_idx = L*8;
+      int L_idx = L*11;
       terminal->output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
 
     }
