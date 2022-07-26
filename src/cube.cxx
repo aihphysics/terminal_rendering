@@ -1,6 +1,7 @@
 #include <cmath>
 #include <cube.hxx>
 #include <iostream>
+#include <string>
 
 void cube::draw(char * output, float * z_buffer ){
 
@@ -41,11 +42,20 @@ void cube::draw(char * output, float * z_buffer ){
 
 void cube::draw(){
 
-  for ( float w = -(width/2.0); w <= (width/2.0); w += width/20.0 ){
-    for ( float h = -(height/2.0); h <= (height/2.0); h += height/20.0 ){
-      for ( float d = -(depth/2.0); d <= (depth/2.0); d += depth/20.0 ){
+  //for ( float w = -width/2.0f; w <= (width/2.0); w += width/20.0 ){
+  //  for ( float h = -height/2.0f; h <= (height/2.0); h += height/20.0 ){
+  //    for ( float d = -depth/2.0f; d <= (depth/2.0); d += depth/20.0 ){
+  
+  for ( float w_ind = 0; w_ind <= 20; w_ind++ ){
+    for ( float h_ind = 0; h_ind <= 20; h_ind++) {
+      for ( float d_ind = 0; d_ind <= 20; d_ind++ ){
+
+        float w = -width/2.0f + w_ind*(width/20.0);
+        float h = -height/2.0f + h_ind*(height/20.0);
+        float d = -depth/2.0f + d_ind*(depth/20.0);
+
       
-        int evp = ( (abs(w*2.0) == width) + (abs(h*2.0) == height) + (abs(d*2.0) == depth) );
+        int evp = ( ( (w_ind == 0 ) || (w_ind == 20)) + ((h_ind == 0) || (h_ind == 20)) + ((d_ind == 0 ) + (d_ind == 20)) );
 
         if  ( evp < 1 ) continue;
 
@@ -89,9 +99,9 @@ void cube::draw(){
         x = x_t; y = y_t;
         x_norm = x_nt; y_norm = y_nt;
         
-        x += x_centre;
-        y += y_centre;
-        z += (z_centre + terminal->K2); 
+        x = x + x_centre;
+        y = y + y_centre;
+        z = z + z_centre + terminal->K2; 
         
         float z_inv = 1/z;
         int x_p = (int) ((float)terminal->screen_width/2.0 + (terminal->K1)*z_inv*x);
@@ -101,9 +111,9 @@ void cube::draw(){
         float L = light_source->x_dir * x_norm 
                 + light_source->y_dir * y_norm
                 + light_source->z_dir * z_norm;
-
+        
         if ( L < 0 ) continue;
-        if ( x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;
+        if ( x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0 ) continue;
         if ( z_inv < terminal->z_buffer[terminal->screen_width * y_p + x_p] ) continue;
         terminal->z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
         int L_idx = L*11;

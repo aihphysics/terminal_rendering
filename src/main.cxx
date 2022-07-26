@@ -25,8 +25,9 @@ int main(int argc, char * argv[], char * env[]){
   // A few object definitions
   torus o_torus( &terminal,  0.3/25.0, 6.0/25.0 );
   sphere test_sphere( &terminal, &light_source, 0.1, 0.2,  0.0,  0.0 );
-  float cube_size = 0.2;
-  cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
+  //float cube_size = 0.3;
+  //cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
+  cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, 0.3, 0.05, 0.1 );
   
   //test_cube.set_rotation( M_PI/4.0, M_PI/4.0 , M_PI/4.0 );
   //test_cube.set_rotation( 0,0,0 );
