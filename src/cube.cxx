@@ -40,40 +40,53 @@ void cube::draw(char * output, float * z_buffer ){
 
 }
 
-void cube::draw(){
+void cube::draw( ){
 
   //for ( float w = -width/2.0f; w <= (width/2.0); w += width/20.0 ){
   //  for ( float h = -height/2.0f; h <= (height/2.0); h += height/20.0 ){
   //    for ( float d = -depth/2.0f; d <= (depth/2.0); d += depth/20.0 ){
   
-  for ( float w_ind = 0; w_ind <= 20; w_ind++ ){
-    for ( float h_ind = 0; h_ind <= 20; h_ind++) {
-      for ( float d_ind = 0; d_ind <= 20; d_ind++ ){
+  //for ( int w_ind = 0; w_ind <= 20; w_ind++ ){
+  //  for ( int h_ind = 0; h_ind <= 20; h_ind++) {
+  //    for ( int d_ind = 0; d_ind <= 20; d_ind++ ){
+  //for ( int point_idx = 0; point_idx <= sizeof(&surface_x)/sizeof(surface_x[0]); point_idx++ ){
+  for ( int point_idx = 0; point_idx <= final_point; point_idx++ ){
 
-        float w = -width/2.0f + w_ind*(width/20.0);
-        float h = -height/2.0f + h_ind*(height/20.0);
-        float d = -depth/2.0f + d_ind*(depth/20.0);
+        //float w = -width/2.0f + w_ind*(width/20.0);
+        //float h = -height/2.0f + h_ind*(height/20.0);
+        //float d = -depth/2.0f + d_ind*(depth/20.0);
 
-      
-        int evp = ( ( (w_ind == 0 ) || (w_ind == 20)) + ((h_ind == 0) || (h_ind == 20)) + ((d_ind == 0 ) + (d_ind == 20)) );
+        //float w = surface_x[point_idx];
+        //float h = surface_y[point_idx];
+        //float d = surface_z[point_idx];
+        
+        float x = surface_x[point_idx];
+        float y = surface_y[point_idx];
+        float z = surface_z[point_idx];
+        float x_norm = normal_x[point_idx];
+        float y_norm = normal_y[point_idx];
+        float z_norm = normal_z[point_idx];
+        int evp = point_type[point_idx];
 
-        if  ( evp < 1 ) continue;
+        //int evp = ( ( (w_ind == 0 ) || (w_ind == 20)) + ((h_ind == 0) || (h_ind == 20)) + ((d_ind == 0 ) + (d_ind == 20)) );
 
-        float x_norm = (abs(w*2.0) == width) * w;
-        float y_norm = (abs(h*2.0) == height) * h;
-        float z_norm = (abs(d*2.0) == depth) * d;
+        //if  ( evp < 1 ) continue;
 
-        float x = w;
-        float y = h;
-        float z = d;
+        //float x_norm = (abs(w*2.0) == width) * w;
+        //float y_norm = (abs(h*2.0) == height) * h;
+        //float z_norm = (abs(d*2.0) == depth) * d;
+
+        //float x = w;
+        //float y = h;
+        //float z = d;
 
         float x_t, y_t, z_t;
         float x_nt, y_nt, z_nt;
         
-        float norm_len = sqrt(x_norm*x_norm + y_norm*y_norm + z_norm*z_norm);
-        x_norm = x_norm/norm_len;
-        y_norm = y_norm/norm_len;
-        z_norm = z_norm/norm_len;
+        //float norm_len = sqrt(x_norm*x_norm + y_norm*y_norm + z_norm*z_norm);
+        //x_norm = x_norm/norm_len;
+        //y_norm = y_norm/norm_len;
+        //z_norm = z_norm/norm_len;
 
         // perform x rotation
         y_t =  y*cos(x_rotation) + z*sin(x_rotation);
@@ -119,8 +132,8 @@ void cube::draw(){
         int L_idx = L*11;
         if  ( evp > 1 ){ L_idx = 11; }
         terminal->output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
-      }
-    }
+    //  }
+    //}
   }
 
 }
