@@ -12,8 +12,8 @@ class renderable {
   protected:
     float x_centre, y_centre, z_centre;
     float x_rotation, y_rotation, z_rotation;
-    float v_x, v_y, v_z;
-    float a_x, a_y, a_z;
+    float x_velocity, y_velocity, z_velocity;
+    float x_acceleration, y_acceleration, z_acceleration;
 
     float v_rx, v_ry, v_rz;
     light * light_source;
@@ -23,9 +23,15 @@ class renderable {
     renderable(){ 
       x_centre = 0, y_centre = 0, z_centre = 0;
     }
+
     virtual void draw() = 0;
     virtual void draw( char * output, float * z_buffer ) = 0;
 
+    void set_rotation( float x_rotation, float y_rotation, float z_rotation ){
+      this->x_rotation = x_rotation;
+      this->y_rotation = y_rotation;
+      this->z_rotation = z_rotation;
+    }
 
 };
 

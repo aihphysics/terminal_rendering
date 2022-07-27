@@ -1,8 +1,6 @@
 #include <math.h>
 #include <renderable.hxx>
 
-#include <iostream>
-
 #ifndef cube_class
 #define cube_class
 
@@ -86,11 +84,6 @@ class cube : public renderable{
 
     void draw();
     void draw( char * output, float * z_buffer );
-    void set_rotation( float x_rotation, float y_rotation, float z_rotation ){
-      this->x_rotation = x_rotation;
-      this->y_rotation = y_rotation;
-      this->z_rotation = z_rotation;
-    }
 
 
 };

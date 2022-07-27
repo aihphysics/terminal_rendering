@@ -17,6 +17,8 @@
 #include <sphere.hxx>
 #include <torus.hxx>
 #include <cube.hxx>
+#include <line.hxx>
+#include <cylinder.hxx>
 
 
 #endif
