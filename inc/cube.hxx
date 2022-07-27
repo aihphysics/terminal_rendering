@@ -34,8 +34,12 @@ class cube : public renderable{
       this->light_source = light_source;
       this->terminal = terminal;
 
+      //use this for proper draw density?
+      //int x_points = width/0.01;
+      //int y_points = height/0.01;
+      //int z_points = depth/0.01;
+
       // populate surface
-      std::cout << "start alloc" << std::endl;
       surface_x = new float[400*7];
       surface_y = new float[400*7];
       surface_z = new float[400*7];
@@ -43,7 +47,6 @@ class cube : public renderable{
       normal_y = new float[400*7];
       normal_z = new float[400*7];
       point_type = new int[400*7];
-      std::cout << "end alloc" << std::endl;
       
       int entry = 0;
       for ( int w_ind = 0; w_ind <= 20; w_ind++ ){
@@ -75,7 +78,6 @@ class cube : public renderable{
 
             point_type[entry] = evp;
             entry++;
-            std::cout << "entry: " << entry << std::endl;
           }
         }
       }
