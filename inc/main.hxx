@@ -14,6 +14,9 @@
 #include <renderable.hxx>
 #include <screen.hxx>
 
+#include <euch_vector.hxx>
+#include <lvector.hxx>
+
 #include <sphere.hxx>
 #include <torus.hxx>
 #include <cube.hxx>
