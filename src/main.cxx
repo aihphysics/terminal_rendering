@@ -24,9 +24,13 @@ int main(int argc, char * argv[], char * env[]){
 
   // A few object definitions
   torus o_torus( &terminal,  0.3/25.0, 6.0/25.0 );
-  sphere test_sphere( &terminal, &light_source, 0.1, 0.2,  0.0,  0.0 );
+  //sphere test_sphere( &terminal, &light_source, 0.1, 0.2,  0.0,  0.0 );
   float cube_size = 0.2;
-  cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
+  cube test_cube( &terminal, &light_source, 0.5,  0.0,  0.0, cube_size, cube_size, cube_size );
+
+  cylinder test_cylinder( &terminal, &light_source, -0.5, 0.0, 0.0, 0.1, 0.3 );
+
+
   //cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, 0.3, 0.05, 0.1 );
   
   //test_cube.set_rotation( M_PI/4.0, M_PI/4.0 , M_PI/4.0 );
@@ -36,12 +40,14 @@ int main(int argc, char * argv[], char * env[]){
   for ( int i = 0; i < 1e5; i++ ){
   
     // draw objects ( should compress these to an array )
-    o_torus.draw( i/20.0, i/20.0 );
     //test_sphere.draw( );
     //test_cube.set_rotation( i/20.0, 0.0, 0.0);  
+    
+    o_torus.draw( i/20.0, i/20.0 );
     test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
-    //test_cube.set_rotation( i/20.0, i/20.0, i/20.0);  
     test_cube.draw();
+    test_cylinder.set_rotation( i/20.0, i/20.0, 0.0);  
+    test_cylinder.draw();
 
     // draw the 'frame'
     terminal.draw_frame();

@@ -11,6 +11,9 @@ class cylinder : public renderable{
   public:
     cylinder( screen * terminal, light * light_source, float x_centre, float y_centre, float z_centre, float radius, float length ){
 
+      this->terminal = terminal;
+      this->light_source = light_source;
+
       this->x_centre = x_centre;
       this->y_centre = y_centre;
       this->z_centre = z_centre;
