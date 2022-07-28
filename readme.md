@@ -1,9 +1,9 @@
 # Terminal Renderer
 
 ## Info
-* This repo contains a basic example of terminal rendering.
+* This repo contains an attempt to build a 3d rendering engine for the terminal.
 * C++ extension of the example of rotating torus demonstrated by a1k0n.
-* Sphere and torus implemented, lines to come.
+* Torus, sphere, cube, and cylinder implemented with a surface iteration model.
 
 ## Compilation/Installation
 * Project uses CMake and should compile with standard c++ libraries.
