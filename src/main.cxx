@@ -23,10 +23,10 @@ int main(int argc, char * argv[], char * env[]){
 
   // light source, not implemented in all objects
   // no distance checks or spread, just a simple normalised vector
-  light light_source( 0.0, 0, -1 );
+  light light_source( 0.0, 0.0, -1.0 );
 
   // A few object definitions
-  torus o_torus( &terminal,  0.3/25.0, 6.0/25.0 );
+  torus o_torus( &terminal,  0.4/25.0, 3.0/25.0 );
   //sphere test_sphere( &terminal, &light_source, 0.1, 0.2,  0.0,  0.0 );
   float cube_size = 0.2;
   cube test_cube( &terminal, &light_source, 0.5,  0.0,  0.0, cube_size, cube_size, cube_size );
@@ -56,7 +56,7 @@ int main(int argc, char * argv[], char * env[]){
 
     // draw the 'frame'
     //terminal.draw_frame();
-    terminal.draw_block_frame();
+    terminal.draw_frame();
 
     std::this_thread::sleep_for( 25ms );
     //std::this_thread::sleep_for( 25ms );
