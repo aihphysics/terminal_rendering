@@ -18,7 +18,7 @@ class sphere : public renderable{
       this->terminal = terminal;
     }
 
-    void draw( char * output, float * z_buffer );
+    void draw( float * output, float * z_buffer );
     void draw();
 
 };

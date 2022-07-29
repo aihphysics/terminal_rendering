@@ -20,8 +20,8 @@ class torus : public renderable {
 
     void draw() override;
     void draw( float A, float B );
-    void draw( char * output, float * z_buffer ) override;
-    void draw( char * output, float * z_buffer, float A, float B);
+    void draw( float * output, float * z_buffer ) override;
+    void draw( float * output, float * z_buffer, float A, float B);
 
 };
 

@@ -4,7 +4,7 @@ void sphere::draw(){
   this->draw( terminal->output, terminal->z_buffer );
 }
 
-void sphere::draw(char * output, float * z_buffer ){
+void sphere::draw( float * output, float * z_buffer ){
   
   for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};
@@ -28,8 +28,9 @@ void sphere::draw(char * output, float * z_buffer ){
       if (x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;
       if ( z_inv < z_buffer[terminal->screen_width * y_p + x_p]) continue;
       z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
-      int L_idx = L*11;
-      output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
+      //int L_idx = L*11;
+      //output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
+      output[terminal->screen_width * y_p + x_p] = L;
 
     }
   }

@@ -25,7 +25,7 @@ class renderable {
     }
 
     virtual void draw() = 0;
-    virtual void draw( char * output, float * z_buffer ) = 0;
+    virtual void draw( float * output, float * z_buffer ) = 0;
 
     void set_rotation( float x_rotation, float y_rotation, float z_rotation ){
       this->x_rotation = x_rotation;

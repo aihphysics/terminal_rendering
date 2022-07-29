@@ -10,7 +10,7 @@ void cube::draw( ){
 
 }
 
-void cube::draw(char * output, float * z_buffer ){
+void cube::draw( float * output, float * z_buffer ){
 
   for ( int point_idx = 0; point_idx <= final_point; point_idx++ ){
     
@@ -67,9 +67,10 @@ void cube::draw(char * output, float * z_buffer ){
     //if ( z_inv < terminal->z_buffer[terminal->screen_width * y_p + x_p] ) continue;
     if ( z_inv < z_buffer[terminal->screen_width * y_p + x_p] ) continue;
     z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
-    int L_idx = L*11;
-    if  ( evp > 1 ){ L_idx = 11; }
-    output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
+    //int L_idx = L*11;
+    //if  ( evp > 1 ){ L_idx = 11; }
+    //output[terminal->screen_width * y_p + x_p] = ".,-~:;=!*#$@"[L_idx];
+    output[terminal->screen_width * y_p + x_p] = L;
 
   }
 

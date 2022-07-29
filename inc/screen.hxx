@@ -19,7 +19,7 @@ class screen {
     float K2;
     float K1;
 
-    char * output;
+    float * output;
     float * z_buffer;
 
     screen ( float K1, float K2, int screen_width, int screen_height ){
@@ -28,7 +28,8 @@ class screen {
       this->K2 = K2;
       this->screen_width = screen_width;
       this->screen_height = screen_height;
-      output = new char[screen_width*screen_height]();
+      //output = new char[screen_width*screen_height]();
+      output = new float[screen_width*screen_height]();
       z_buffer = new float[screen_width*screen_height]();
     }
     
@@ -38,6 +39,7 @@ class screen {
     void clear_screen();
     void reset_frame();
     void draw_frame();
+    void draw_block_frame();
 
 
 };

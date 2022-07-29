@@ -27,7 +27,7 @@ class line : public renderable{
     }
     void add_connection( line * line );
     void draw();
-    void draw( char * output, float * z_buffer );
+    void draw( float * output, float * z_buffer );
 
 
 };

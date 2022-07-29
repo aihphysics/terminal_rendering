@@ -7,8 +7,11 @@ using namespace std::chrono_literals;
 int main(int argc, char * argv[], char * env[]){
 
   // Advised to add exports to your .bashrc for expediancy, getopt inbound
-  int screen_width  = std::atoi(std::getenv("COLUMNS"));
-  int screen_height = std::atoi(std::getenv("LINES"));
+  int screen_columns  = std::atoi(std::getenv("COLUMNS"));
+  int screen_lines = std::atoi(std::getenv("LINES"));
+
+  int screen_height = screen_lines*2;
+  int screen_width = screen_columns;
 
   // Depth and projection constants
   // 50 is flat, 2 is tolerable, 1.0 is dizzying
@@ -27,6 +30,7 @@ int main(int argc, char * argv[], char * env[]){
   //sphere test_sphere( &terminal, &light_source, 0.1, 0.2,  0.0,  0.0 );
   float cube_size = 0.2;
   cube test_cube( &terminal, &light_source, 0.5,  0.0,  0.0, cube_size, cube_size, cube_size );
+  //cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
 
   cylinder test_cylinder( &terminal, &light_source, -0.5, 0.0, 0.0, 0.1, 0.3 );
 
@@ -44,17 +48,18 @@ int main(int argc, char * argv[], char * env[]){
     //test_cube.set_rotation( i/20.0, 0.0, 0.0);  
     
     o_torus.draw( i/20.0, i/20.0 );
+    //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
     test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
     test_cube.draw();
     test_cylinder.set_rotation( i/20.0, i/20.0, 0.0);  
     test_cylinder.draw();
 
     // draw the 'frame'
-    terminal.draw_frame();
+    //terminal.draw_frame();
+    terminal.draw_block_frame();
 
-    ////20fps lol
     std::this_thread::sleep_for( 25ms );
-    //60fps lol
+    //std::this_thread::sleep_for( 25ms );
     //std::this_thread::sleep_for( 16ms );
 
 

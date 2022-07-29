@@ -37,26 +37,29 @@ class cube : public renderable{
       //int y_points = height/0.01;
       //int z_points = depth/0.01;
 
+      int itr = width/0.005 - 1;
+      int points = itr*itr*6+1;
+
       // populate surface
-      surface_x = new float[400*7];
-      surface_y = new float[400*7];
-      surface_z = new float[400*7];
-      normal_x = new float[400*7];
-      normal_y = new float[400*7];
-      normal_z = new float[400*7];
-      point_type = new int[400*7];
+      surface_x = new float[points];
+      surface_y = new float[points];
+      surface_z = new float[points];
+      normal_x = new float[points];
+      normal_y = new float[points];
+      normal_z = new float[points];
+      point_type = new int[points];
       
       int entry = 0;
-      for ( int w_ind = 0; w_ind <= 20; w_ind++ ){
-        for ( int h_ind = 0; h_ind <= 20; h_ind++) {
-          for ( int d_ind = 0; d_ind <= 20; d_ind++ ){
+      for ( int w_ind = 0; w_ind <= itr; w_ind++ ){
+        for ( int h_ind = 0; h_ind <= itr; h_ind++) {
+          for ( int d_ind = 0; d_ind <= itr; d_ind++ ){
 
-            int evp = ( ( (w_ind == 0 ) || (w_ind == 20)) + ((h_ind == 0) || (h_ind == 20)) + ((d_ind == 0 ) + (d_ind == 20)) );
+            int evp = ( ( ( w_ind == 0 ) || (w_ind == itr)) + ((h_ind == 0) || (h_ind == itr)) + ((d_ind == 0 ) + (d_ind == itr)) );
             if  ( evp < 1 ) continue;
 
-            float w = -width/2.0f + w_ind*(width/20.0);
-            float h = -height/2.0f + h_ind*(height/20.0);
-            float d = -depth/2.0f + d_ind*(depth/20.0);              
+            float w = -width/2.0f + w_ind*(width/(float) itr);
+            float h = -height/2.0f + h_ind*(height/(float) itr);
+            float d = -depth/2.0f + d_ind*(depth/(float) itr);              
             surface_x[entry] = w; 
             surface_y[entry] = h;
             surface_z[entry] = d;
@@ -83,7 +86,7 @@ class cube : public renderable{
     }
 
     void draw();
-    void draw( char * output, float * z_buffer );
+    void draw( float * output, float * z_buffer );
 
 
 };
