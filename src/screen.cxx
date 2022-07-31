@@ -36,14 +36,17 @@ void screen::clear_screen(){
 }
 
 void screen::draw_frame(){
+
   printf( "\x1b[H" );
   for ( int y = 0; y < screen_height; y+=2 ){
     for ( int x = 0; x < screen_width; x++ ){
 
       float upper = output[screen_width * y + x];
       float lower = output[screen_width * (y+1) + x];
-			int upper_color = ( upper <= 0.0f ) ? 256 : 232 + ( upper*23.0f );
-			int lower_color = ( lower <= 0.0f ) ? 0  : 232 + ( lower*23.0f );
+			//int upper_color = ( upper <= 0.0f ) ? 256 : 232 + ( upper*23.0f );
+			//int lower_color = ( lower <= 0.0f ) ? 0  : 232 + ( lower*23.0f );
+      int upper_color = ( upper <= 0.0f ) ? 15 : 232 + ( upper*23.0f );
+			int lower_color = ( lower <= 0.0f ) ? 15  : 232 + ( lower*23.0f );
 
 			if ( (upper_color == 256 || upper_color == 0) && lower_color == 0 ){ putchar(' '); }
 			else printf( "\u001b[48;5;%im\u001b[38;5;%im▄\x1b[0m", upper_color, lower_color );
@@ -53,8 +56,8 @@ void screen::draw_frame(){
       z_buffer[screen_width * (y+1) + x] = 0;
     }
   }
+
 }
-//printf( "▄%c", output[screen_width * y + x] );
 //printf( "▄" );
 //range 232-255
 //foreground

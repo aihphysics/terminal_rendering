@@ -48,11 +48,11 @@ void torus::draw( float A, float B ){
   float cos_A{cos(A)}, sin_A{sin(A)};
   float cos_B{cos(B)}, sin_B{sin(B)};
 
-  for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
+  for ( float theta = 0; theta <= 2*M_PI; theta+=M_PI/60.0){
 	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};
 
 	  // iterate around torus axis
-	  for ( float phi = 0; phi < 2*M_PI; phi+=0.01){
+	  for ( float phi = 0; phi <= 2*M_PI; phi+=M_PI/60.0){
 	    float cos_phi{cos(phi)}, sin_phi{sin(phi)};
 	
 	    // circle x and y before z

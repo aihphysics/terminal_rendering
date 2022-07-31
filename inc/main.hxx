@@ -1,13 +1,12 @@
 #ifndef main_hxx
 #define main_hxx
 
-#include <stdlib.h>
 #include <math.h>
 #include <algorithm>
-#include <iostream>
 #include <chrono>
 #include <vector>
 #include <thread>
+#include <numeric>
 
 #include <common.hxx>
 #include <light.hxx>
@@ -23,6 +22,7 @@
 #include <line.hxx>
 #include <cylinder.hxx>
 
+#include <getopt.h>
 
 #endif
 

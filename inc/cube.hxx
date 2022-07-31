@@ -10,6 +10,11 @@ class cube : public renderable{
     float width;
     float height;
     float depth;
+
+    euch_vector centre;
+    euch_vector * surface;
+    euch_vector * normal;
+
     float * surface_x;
     float * surface_y;
     float * surface_z;
@@ -18,9 +23,12 @@ class cube : public renderable{
     float * normal_z;
     int * point_type;
     int final_point;
+    int draw_level;
 
   public:
     cube(screen * terminal, light * light_source, float x_centre, float y_centre, float z_centre, float width, float height, float depth ){
+
+      centre = euch_vector( x_centre, y_centre, z_centre );
 
       // fill members
       this->x_centre = x_centre; 
@@ -31,15 +39,14 @@ class cube : public renderable{
       this->depth = depth;
       this->light_source = light_source;
       this->terminal = terminal;
-
-      //use this for proper draw density?
-      //int x_points = width/0.01;
-      //int y_points = height/0.01;
-      //int z_points = depth/0.01;
-
+      this->draw_level = 1;
+      
       int itr = width/0.005 - 1;
       int points = itr*itr*6+1;
 
+      surface = new euch_vector[points];
+      normal = new euch_vector[points];
+      
       // populate surface
       surface_x = new float[points];
       surface_y = new float[points];
@@ -63,6 +70,17 @@ class cube : public renderable{
             surface_x[entry] = w; 
             surface_y[entry] = h;
             surface_z[entry] = d;
+
+            euch_vector point( -width/2.0f + w_ind*(width/(float) itr), 
+                               -height/2.0f + h_ind*(height/(float) itr),
+                               -depth/2.0f + d_ind*(depth/(float) itr) );
+
+
+            euch_vector norm( (abs(w*2.0) == width) * w , (abs(h*2.0) == height) * h, (abs(d*2.0) == depth) * d );
+            norm.normalise();
+
+            surface[entry] = point;
+            normal[entry] = norm;
             
             float x_norm = (abs(w*2.0) == width) * w;
             float y_norm = (abs(h*2.0) == height) * h;
@@ -87,6 +105,12 @@ class cube : public renderable{
 
     void draw();
     void draw( float * output, float * z_buffer );
+
+    void set_level( int draw_level ){
+      
+      this->draw_level = draw_level;
+  
+    }
 
 
 };

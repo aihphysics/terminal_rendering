@@ -13,6 +13,9 @@ void cube::draw( ){
 void cube::draw( float * output, float * z_buffer ){
 
   for ( int point_idx = 0; point_idx <= final_point; point_idx++ ){
+
+    int evp = point_type[point_idx];
+    if ( evp < this->draw_level ){ continue; }
     
     float x = surface_x[point_idx];
     float y = surface_y[point_idx];
@@ -20,7 +23,19 @@ void cube::draw( float * output, float * z_buffer ){
     float x_norm = normal_x[point_idx];
     float y_norm = normal_y[point_idx];
     float z_norm = normal_z[point_idx];
-    int evp = point_type[point_idx];
+
+    euch_vector point = surface[point_idx];
+    euch_vector norm = normal[point_idx];
+
+    point.rotate_x( x_rotation );
+    point.rotate_y( y_rotation );
+    point.rotate_z( z_rotation );
+    norm.rotate_x( x_rotation );
+    norm.rotate_y( y_rotation );
+    norm.rotate_z( z_rotation );
+
+    point += centre;
+
 
     float x_t, y_t, z_t;
     float x_nt, y_nt, z_nt;

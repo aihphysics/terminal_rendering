@@ -60,6 +60,15 @@ float euch_vector::square_length(){
 
 }
 
+void euch_vector::normalise(){
+
+  float norm = this->length();
+  this->x /= norm;
+  this->y /= norm;
+  this->z /= norm;
+
+}
+
 void euch_vector::rotate_x( float x_rotation ){
 
   float y_temp;

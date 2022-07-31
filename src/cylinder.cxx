@@ -10,16 +10,16 @@ void cylinder::draw( float * output, float * z_buffer ){
 
   for ( float theta = 0; theta <= 2*M_PI; theta+=M_PI/40.0 ){
 
-    for ( int len_idx = 0; len_idx <= 50; len_idx++ ){
+    for ( int len_idx = 0; len_idx <= 60; len_idx++ ){
 
       float radius_start = radius;
       bool base = false;
-      if ( len_idx == 0 || len_idx == 50 ){ 
+      if ( len_idx == 0 || len_idx == 60 ){ 
         radius_start = 0; 
         base = true;
       }
 
-      float l = -length/2.0 + len_idx*(length/50.0);
+      float l = -length/2.0 + len_idx*(length/60.0);
 
       for ( float r = radius_start; r <= radius; r+=radius/20.0 ){
 

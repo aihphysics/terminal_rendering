@@ -2,6 +2,7 @@
 #include <common.hxx>
 #include <light.hxx>
 #include <screen.hxx>
+#include <euch_vector.hxx>
 
 
 #ifndef renderable_class

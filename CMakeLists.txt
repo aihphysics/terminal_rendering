@@ -10,7 +10,7 @@ include_directories(inc)
 set( src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx src/renderable.cxx src/screen.cxx src/cube.cxx 
 	src/line.cxx src/cylinder.cxx src/euch_vector.cxx src/lvector.cxx src/math_funcs.cxx )
 add_executable( t_rend ${src})
-add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3 )
+add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3 -pthead )
 
 
 IF( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/../compile_commands.json" )
