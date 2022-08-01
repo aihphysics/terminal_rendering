@@ -1,35 +1,41 @@
 #include <sphere.hxx>
 
+#include <iostream>
+
 void sphere::draw(){
   this->draw( terminal->output, terminal->z_buffer );
 }
 
 void sphere::draw( float * output, float * z_buffer ){
   
-  for ( float theta = 0; theta < 2*M_PI; theta+=0.01){
-	  float cos_theta{cos(theta)}, sin_theta{sin(theta)};
+  for ( int point_idx = 0; point_idx <= final_point; point_idx++ ){
 
-	  for ( float phi = 0; phi < 2*M_PI; phi+=0.01){
-	    float cos_phi{cos(phi)}, sin_phi{sin(phi)};
- 
-      float x = x_centre + radius*cos_theta*cos_phi;
-      float y = y_centre + radius*sin_theta;
-      float z = z_centre + terminal->K2 + radius*cos_theta*sin_phi;
-      
-      float z_inv = 1/z;
-      int x_p = (int) (terminal->screen_width/2.0 + terminal->K1*z_inv*x);
-      int y_p = (int) (terminal->screen_height/2.0 - terminal->K1*z_inv*y);
+    int evp = point_type[point_idx];
 
-      float L = light_source->light_vec.x * cos_theta*cos_phi
-              + light_source->light_vec.y * sin_theta
-              + light_source->light_vec.z * cos_theta*sin_phi;
+    euch_vector point = surface[point_idx];
+    euch_vector norm = normal[point_idx];
 
-      if ( L < 0 ) continue;
-      if (x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;
-      if ( z_inv < z_buffer[terminal->screen_width * y_p + x_p]) continue;
-      z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
-      output[terminal->screen_width * y_p + x_p] = L;
+    point.rotate_x( x_rotation );
+    point.rotate_y( y_rotation );
+    point.rotate_z( z_rotation );
+    norm.rotate_x( x_rotation );
+    norm.rotate_y( y_rotation );
+    norm.rotate_z( z_rotation );
 
-    }
+    point += centre;
+    point += terminal->position;
+
+    float L = light_source->light_vec * norm;
+  
+    float z_inv = 1/point.z;
+    int x_p = (int) ((float)terminal->screen_width/2.0 + (terminal->K1)*z_inv*point.x);
+    int y_p = (int) ((float)terminal->screen_height/2.0 - (terminal->K1)*z_inv*point.y);
+
+    if ( L < 0 ) continue;
+    if ( x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0 ) continue;
+    if ( z_inv < z_buffer[terminal->screen_width * y_p + x_p] ) continue;
+    z_buffer[terminal->screen_width * y_p + x_p] = z_inv;
+    output[terminal->screen_width * y_p + x_p] = L;
+
   }
 }

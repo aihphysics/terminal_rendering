@@ -8,6 +8,7 @@
 class cube : public renderable{
 
   protected:
+
     float width;
     float height;
     float depth;
@@ -16,6 +17,7 @@ class cube : public renderable{
     int draw_level;
 
   public:
+
     cube(screen * terminal, light * light_source, float x_centre, float y_centre, float z_centre, float width, float height, float depth ){
 
       centre = euch_vector( x_centre, y_centre, z_centre );

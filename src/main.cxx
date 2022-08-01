@@ -65,19 +65,20 @@ int main(int argc, char * argv[], char * env[]){
 
   // light source, not implemented in all objects
   // no distance checks or spread, just a simple normalised vector
-  light light_source( 0.0, 0.0, -1.0 );
+  light light_source( 0.0, 1.0, -1.0 );
 
   // A few object definitions
-  torus o_torus( &terminal,  0.4/25.0, 3.0/25.0 );
+  //torus o_torus( &terminal,  0.4/25.0, 3.0/25.0 );
   sphere test_sphere( &terminal, &light_source, 0.1, 0.0,  0.0,  0.0 );
   float cube_size = 0.2;
   //cube test_cube( &terminal, &light_source, 0.5,  0.0,  0.0, cube_size, cube_size, cube_size );
+
+
   cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
 
   //cylinder test_cylinder( &terminal, &light_source, -0.5, 0.0, 0.0, 0.1, 0.3 );
 
   test_cube.set_level( draw_level );
-
   //cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, 0.3, 0.05, 0.1 );
   
   //test_cube.set_rotation( M_PI/4.0, M_PI/4.0 , M_PI/4.0 );
@@ -96,9 +97,9 @@ int main(int argc, char * argv[], char * env[]){
     
     //o_torus.draw( i/20.0, i/20.0 );
     //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
-    //test_sphere.draw();
-    test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
-    test_cube.draw();
+    test_sphere.draw();
+    //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
+    //test_cube.draw();
     //test_cylinder.set_rotation( i/20.0, i/20.0, 0.0);  
     //test_cylinder.draw();
 

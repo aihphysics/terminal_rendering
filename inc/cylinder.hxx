@@ -6,6 +6,7 @@
 #define cylinder_class
 
 class cylinder : public renderable{
+
   protected:
     float radius;
     float length;
