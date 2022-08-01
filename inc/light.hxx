@@ -1,12 +1,15 @@
 #include <math.h>
 
+#include <euch_vector.hxx>
+
 #ifndef light_class
 #define light_class
 
 class light{
+
   public:
-    float x_pos, y_pos, z_pos;
-    float x_dir, y_dir, z_dir;
+    
+    euch_vector light_vec;
     light();
     light(float x_dir, float y_dir, float z_dir);
 };

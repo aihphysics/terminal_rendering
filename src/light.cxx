@@ -1,12 +1,13 @@
 #include <light.hxx>
 
 light::light(){
-  x_dir = 0; y_dir = 0; z_dir = 0; 
+
+  light_vec = euch_vector( 0, 0, 0 );
+
 }
 
 light::light(float x_dir, float y_dir, float z_dir){
-   float norm = sqrt( x_dir*x_dir + y_dir*y_dir + z_dir*z_dir);
-   this->x_dir = x_dir/norm;
-   this->y_dir = y_dir/norm;
-   this->z_dir = z_dir/norm;
+
+  light_vec = euch_vector( x_dir, y_dir, z_dir ); 
+   
 }

@@ -30,9 +30,9 @@ void torus::draw( float * output, float * z_buffer ){
       int x_p = (int) (((float) terminal->screen_width)/2 + terminal->K1*z_inv*x);
       int y_p = (int) (((float) terminal->screen_height)/2 - terminal->K1*z_inv*y);
       
-      float L = light_source->x_dir * cos_theta*cos_phi
-              + light_source->y_dir * sin_theta
-              + light_source->z_dir * cos_theta*sin_phi;
+      float L = light_source->light_vec.x * cos_theta*cos_phi
+              + light_source->light_vec.y * sin_theta
+              + light_source->light_vec.z * cos_theta*sin_phi;
 
       if ( L < 0 ) continue;
       if (x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;

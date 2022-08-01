@@ -4,7 +4,6 @@
 #include <screen.hxx>
 #include <euch_vector.hxx>
 
-
 #ifndef renderable_class
 #define renderable_class
 
@@ -19,6 +18,11 @@ class renderable {
     float v_rx, v_ry, v_rz;
     light * light_source;
     screen * terminal;
+
+    euch_vector centre;
+    euch_vector * surface;
+    euch_vector * normal;
+    int * point_type;
 
   public:
     renderable(){ 

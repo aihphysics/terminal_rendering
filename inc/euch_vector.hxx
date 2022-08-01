@@ -5,12 +5,12 @@
 
 class euch_vector {
 
-  protected:
+  public:
+
     float x;
     float y;
     float z;
 
-  public:
     euch_vector(){
       this->x = 0;
       this->y = 0;
