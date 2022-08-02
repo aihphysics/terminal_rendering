@@ -47,6 +47,7 @@ class euch_vector {
     void rotate_z ( float z_rotation );
     void rotate_xyz ( float x_rotation, float y_rotation, float z_rotation );
 
+    void boost_x ( float beta );
     void normalise();
 
 

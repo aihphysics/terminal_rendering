@@ -13,6 +13,8 @@ class cube : public renderable{
     float height;
     float depth;
 
+    float beta_x;
+
     int final_point;
     int draw_level;
 
@@ -30,6 +32,8 @@ class cube : public renderable{
       this->terminal = terminal;
       this->draw_level = 1;
       
+      beta_x = 0;
+
       int itr = width/0.005 - 1;
       int points = itr*itr*6+1;
 
@@ -68,9 +72,11 @@ class cube : public renderable{
     void draw( float * output, float * z_buffer );
 
     void set_level( int draw_level ){
-      
       this->draw_level = draw_level;
-  
+    }
+
+    void set_beta ( float beta_x ){
+      this->beta_x = beta_x;
     }
 
 

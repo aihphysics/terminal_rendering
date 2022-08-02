@@ -25,6 +25,8 @@ void cube::draw( float * output, float * z_buffer ){
     norm.rotate_y( y_rotation );
     norm.rotate_z( z_rotation );
 
+    point.boost_x( beta_x );
+
     point += centre;
     point += terminal->position;
 

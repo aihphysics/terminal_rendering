@@ -100,8 +100,11 @@ void euch_vector::rotate_z( float z_rotation ){
 
 
 
+void euch_vector::boost_x( float beta ){
 
+  x = x*( sqrt( 1-(beta*beta) ) );
 
+}
 
 
 
