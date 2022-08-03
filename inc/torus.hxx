@@ -12,8 +12,9 @@ class torus : public renderable {
     float r_inner;
 
   public:
-    torus(screen * terminal, float r_tube, float r_inner){
+    torus(screen * terminal, light * light_source, float r_tube, float r_inner){
       this->terminal = terminal;
+      this->light_source = light_source;
       this->r_tube = r_tube; 
       this->r_inner = r_inner;
     }

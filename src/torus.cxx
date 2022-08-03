@@ -1,5 +1,6 @@
 #include <torus.hxx>
 
+#include <iostream>
 
 void torus::draw(){
   
@@ -71,6 +72,7 @@ void torus::draw( float A, float B ){
       // calculate luminance
       float L =  cos_phi*cos_theta*sin_B - cos_A*cos_theta*sin_phi - sin_A*sin_theta + cos_B*(cos_A*sin_theta - cos_theta*sin_A*sin_phi);
 
+      L /= sqrt(2);
       // luminance and z buffer checks
       if ( L < 0 ) continue;
       if (x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0) continue;
