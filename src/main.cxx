@@ -81,26 +81,48 @@ int main(int argc, char * argv[], char * env[]){
   
   //test_cube.set_rotation( M_PI/4.0, M_PI/4.0 , M_PI/4.0 );
   //test_cube.set_rotation( 0,0,0 );
+  
+  line test_line1 = line( &terminal, 0, 0, 0,  0.2,  0.2,  0.2 );  
+  line test_line2 = line( &terminal, 0, 0, 0,  0.2, -0.2,  0.2 );  
+  line test_line3 = line( &terminal, 0, 0, 0, -0.2,  0.2,  0.2 );  
+  line test_line4 = line( &terminal, 0, 0, 0, -0.2, -0.2,  0.2 );  
+  line test_line5 = line( &terminal, 0, 0, 0,  0.2,  0.2, -0.2 );  
+  line test_line6 = line( &terminal, 0, 0, 0,  0.2, -0.2, -0.2 );  
+  line test_line7 = line( &terminal, 0, 0, 0, -0.2,  0.2, -0.2 );  
+  line test_line8 = line( &terminal, 0, 0, 0, -0.2, -0.2, -0.2 ); 
+  //line line2 = line( &terminal, 0, 0, 0, 1, -1, -1 );  
+  
 
   // Draw loop, probably could be done better
-
-
   auto goal_time = std::chrono::milliseconds( (int) max_pause_length);
   for ( int i = 0; i < 1e5; i++ ){
   
 		auto start = std::chrono::high_resolution_clock::now();
+
+
     // draw objects ( should compress these to an array )
-    //test_sphere.draw( );
-    //test_cube.set_rotation( i/20.0, 0.0, 0.0);  
-    
-    o_torus.draw( i/20.0, i/20.0 );
+    //o_torus.draw( i/20.0, i/20.0 );
+    //o_torus.draw( );
     //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
     //test_sphere.draw();
-    test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
-    //test_cube.set_rotation( M_PI/4.0, M_PI/4.0, 0.0);  
-    //if ( i < 99 ){
-    //  test_cube.set_beta( i/100.0 );
-    //}
+    
+    test_line1.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line2.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line3.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line4.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line5.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line6.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line7.set_rotation( i/20.0, i/20.0, 0.0);
+    test_line8.set_rotation( i/20.0, i/20.0, 0.0);
+
+    test_line1.draw(); 
+    test_line2.draw();
+    test_line3.draw();
+    test_line4.draw();
+    test_line5.draw();
+    test_line6.draw();
+    test_line7.draw();
+    test_line8.draw();
 
     // boost oscillation
     //int hundreds = ( i / ( (int) 100 ) );
@@ -109,10 +131,6 @@ int main(int argc, char * argv[], char * env[]){
     //} else  {
     //  test_cube.set_beta(  ( 99 - ( i - 100*hundreds ) )/100.0 );
     //}
-    //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
-    //test_cube.draw();
-    //test_cylinder.set_rotation( i/20.0, i/20.0, 0.0);  
-    //test_cylinder.draw();
 
     // draw the 'frame'
     terminal.draw_frame();
@@ -127,8 +145,8 @@ int main(int argc, char * argv[], char * env[]){
 
 	//double iteration_time = std::accumulate( timings.begin(), timings.end(), 0 );
 	//double average_time = iteration_time/(double) timings.size();
-//	std::cout << "Total iteration time: " << iteration_time << " (us)" << std::endl;
-//	std::cout << "Avg frame :           " << average_time << " (us)" << std::endl;
+  //std::cout << "Total iteration time: " << iteration_time << " (us)" << std::endl;
+  //std::cout << "Avg frame :           " << average_time << " (us)" << std::endl;
 
   return 0;
 }
@@ -138,11 +156,11 @@ int main(int argc, char * argv[], char * env[]){
 // IDEAS THAT NEED IMPLEMENTED
 // >> I SPENT HOURS REFACTORING AND TOUCHED NONE OF THESE
 // PROPER HEADER GUARDS -- DONE
-// DISENTANGLE THE TORUS CALCULATIONS 
+// DISENTANGLE THE TORUS CALCULATIONS -- DONE
 // LIGHT SOURCES AS AN ARRAY
 // L-BUFFER
 // RE-EVALUATE CAMERA AT ORIGIN
 // ADD USER CONTROL INPUT ON CAMERA
-// CREATE ROTATION OBJECTS
+// CREATE ROTATION OBJECTS -- DONE
 // DO LINE ATTACHMENTS
-// DO RESOLUTION CALCULATION FOR STEPS
+// DO RESOLUTION CALCULATION FOR STEPS -- DONE (ISH)

@@ -37,6 +37,16 @@ float euch_vector::operator*( euch_vector & other ){
   return (this->x*other.x + this->y*other.y + this->z*other.z);
 
 }
+euch_vector euch_vector::operator*( double len ){
+
+  return euch_vector( this->x*len, this->y*len, this->z*len );
+}
+
+euch_vector euch_vector::operator/( double len ){
+
+  return euch_vector( this->x/len, this->y/len, this->z/len );
+
+}
 
 euch_vector euch_vector::cross( euch_vector & other ){
 
@@ -95,10 +105,6 @@ void euch_vector::rotate_z( float z_rotation ){
   x = x_temp;
 
 }
-
-
-
-
 
 void euch_vector::boost_x( float beta ){
 

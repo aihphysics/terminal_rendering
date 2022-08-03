@@ -31,6 +31,8 @@ class euch_vector {
 
     euch_vector operator+( euch_vector & other );
     euch_vector operator-( euch_vector & other );
+    euch_vector operator/( double len );
+    euch_vector operator*( double len );
     float operator*( euch_vector & other );
 
     euch_vector & operator+=( euch_vector & other );
