@@ -27,7 +27,9 @@ void cylinder::draw( float * output, float * z_buffer ){
     point += terminal->position;
 
     float L = light_source->light_vec * norm;
-  
+    
+    //euch_vector screen_coordinate = project( point, terminal );
+
     float z_inv = 1/point.z;
     int x_p = (int) ((float)terminal->screen_width/2.0 + (terminal->K1)*z_inv*point.x);
     int y_p = (int) ((float)terminal->screen_height/2.0 - (terminal->K1)*z_inv*point.y);

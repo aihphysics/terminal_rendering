@@ -37,6 +37,9 @@ class renderable {
       this->y_rotation = y_rotation;
       this->z_rotation = z_rotation;
     }
+  
+    euch_vector project( euch_vector point, screen * terminal );
+
 
 };
 

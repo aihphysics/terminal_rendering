@@ -31,10 +31,16 @@ void cube::draw( float * output, float * z_buffer ){
     point += terminal->position;
 
     float L = light_source->light_vec * norm;
+ 
+    euch_vector proj_point = project( point, terminal );
   
-    float z_inv = 1/point.z;
-    int x_p = (int) ((float)terminal->screen_width/2.0 + (terminal->K1)*z_inv*point.x);
-    int y_p = (int) ((float)terminal->screen_height/2.0 - (terminal->K1)*z_inv*point.y);
+    int x_p = proj_point.x;
+    int y_p = proj_point.y;
+    float z_inv = proj_point.z;
+    
+    //float z_inv = 1/point.z;
+    //int x_p = (int) ((float)terminal->screen_width/2.0 + (terminal->K1)*z_inv*point.x);
+    //int y_p = (int) ((float)terminal->screen_height/2.0 - (terminal->K1)*z_inv*point.y);
 
     if ( L < 0 ) continue;
     if ( x_p > terminal->screen_width || y_p > terminal->screen_height || x_p < 0 || y_p < 0 ) continue;

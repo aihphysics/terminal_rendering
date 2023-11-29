@@ -75,23 +75,32 @@ int main(int argc, char * argv[], char * env[]){
   cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, cube_size, cube_size, cube_size );
 
   //cylinder test_cylinder( &terminal, &light_source, -0.5, 0.0, 0.0, 0.1, 0.3 );
+  cylinder test_cylinder( &terminal, &light_source, 0.0, 0.0, 0.0, 0.1, 0.3 );
 
-  test_cube.set_level( 1 );
+  //test_cube.set_level( 1 );
   //cube test_cube( &terminal, &light_source, 0.0,  0.0,  0.0, 0.3, 0.05, 0.1 );
   
   //test_cube.set_rotation( M_PI/4.0, M_PI/4.0 , M_PI/4.0 );
   //test_cube.set_rotation( 0,0,0 );
   
-  line test_line1 = line( &terminal, 0, 0, 0,  0.2,  0.2,  0.2 );  
-  line test_line2 = line( &terminal, 0, 0, 0,  0.2, -0.2,  0.2 );  
-  line test_line3 = line( &terminal, 0, 0, 0, -0.2,  0.2,  0.2 );  
-  line test_line4 = line( &terminal, 0, 0, 0, -0.2, -0.2,  0.2 );  
-  line test_line5 = line( &terminal, 0, 0, 0,  0.2,  0.2, -0.2 );  
-  line test_line6 = line( &terminal, 0, 0, 0,  0.2, -0.2, -0.2 );  
-  line test_line7 = line( &terminal, 0, 0, 0, -0.2,  0.2, -0.2 );  
-  line test_line8 = line( &terminal, 0, 0, 0, -0.2, -0.2, -0.2 ); 
+  //line test_line1 = line( &terminal, 0, 0, 0,  0.2,  0.2,  0.2 );  
+  //line test_line2 = line( &terminal, 0, 0, 0,  0.2, -0.2,  0.2 );  
+  //line test_line3 = line( &terminal, 0, 0, 0, -0.2,  0.2,  0.2 );  
+  //line test_line4 = line( &terminal, 0, 0, 0, -0.2, -0.2,  0.2 );  
+  //line test_line5 = line( &terminal, 0, 0, 0,  0.2,  0.2, -0.2 );  
+  //line test_line6 = line( &terminal, 0, 0, 0,  0.2, -0.2, -0.2 );  
+  //line test_line7 = line( &terminal, 0, 0, 0, -0.2,  0.2, -0.2 );  
+  //line test_line8 = line( &terminal, 0, 0, 0, -0.2, -0.2, -0.2 ); 
   //line line2 = line( &terminal, 0, 0, 0, 1, -1, -1 );  
   
+
+  //double delta_t = 0;
+  //while ( true ){
+  //  auto now = std::chrono::high_resolution_clock::now();
+  //  now.min
+  //}
+
+
 
   // Draw loop, probably could be done better
   auto goal_time = std::chrono::milliseconds( (int) max_pause_length);
@@ -103,34 +112,47 @@ int main(int argc, char * argv[], char * env[]){
     // draw objects ( should compress these to an array )
     //o_torus.draw( i/20.0, i/20.0 );
     //o_torus.draw( );
-    //test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
+    test_cube.set_rotation( i/20.0, i/20.0, 0.0);  
+    o_torus.set_rotation( i/20.0, i/20.0, 0.0);  
+    test_cylinder.set_rotation( i/20.0, i/20.0, 0.0);  
+    test_sphere.set_rotation( i/20.0, i/20.0, 0.0);  
     //test_sphere.draw();
     
-    test_line1.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line2.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line3.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line4.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line5.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line6.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line7.set_rotation( i/20.0, i/20.0, 0.0);
-    test_line8.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line1.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line2.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line3.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line4.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line5.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line6.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line7.set_rotation( i/20.0, i/20.0, 0.0);
+    //test_line8.set_rotation( i/20.0, i/20.0, 0.0);
 
-    test_line1.draw(); 
-    test_line2.draw();
-    test_line3.draw();
-    test_line4.draw();
-    test_line5.draw();
-    test_line6.draw();
-    test_line7.draw();
-    test_line8.draw();
+    //test_line1.draw(); 
+    //test_line2.draw();
+    //test_line3.draw();
+    //test_line4.draw();
+    //test_line5.draw();
+    //test_line6.draw();
+    //test_line7.draw();
+    //test_line8.draw();
 
     // boost oscillation
-    //int hundreds = ( i / ( (int) 100 ) );
-    //if (  hundreds % 2 == 0 ){
-    //  test_cube.set_beta(  (i - 100*hundreds)/100.0 );
-    //} else  {
-    //  test_cube.set_beta(  ( 99 - ( i - 100*hundreds ) )/100.0 );
-    //}
+    int hundreds = ( i / ( (int) 100 ) );
+    if ( hundreds % 2 == 0 ){
+      test_cube.set_beta(  (i - 100*hundreds)/100.0 );
+    } else  {
+      test_cube.set_beta(  ( 99 - ( i - 100*hundreds ) )/100.0 );
+    }
+
+    test_cube.draw();
+
+    //test_sphere.draw();
+    
+    //test_cylinder.draw();
+
+    //o_torus.draw();
+
+    //test_cube.draw();
 
     // draw the 'frame'
     terminal.draw_frame();
@@ -158,9 +180,12 @@ int main(int argc, char * argv[], char * env[]){
 // PROPER HEADER GUARDS -- DONE
 // DISENTANGLE THE TORUS CALCULATIONS -- DONE
 // LIGHT SOURCES AS AN ARRAY
+// IMPLEMENT LINE -- DONE
 // L-BUFFER
 // RE-EVALUATE CAMERA AT ORIGIN
 // ADD USER CONTROL INPUT ON CAMERA
 // CREATE ROTATION OBJECTS -- DONE
 // DO LINE ATTACHMENTS
 // DO RESOLUTION CALCULATION FOR STEPS -- DONE (ISH)
+// for actual stuff, this should be abandoned in favour of opengl
+// this is just a toy
