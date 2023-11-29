@@ -3,12 +3,12 @@
 cmake_minimum_required(VERSION 3.23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(term_renderer)
+project( term_renderer)
 
 include_directories(inc)
 
-set( src src/main.cxx src/sphere.cxx src/torus.cxx src/light.cxx src/renderable.cxx src/screen.cxx src/cube.cxx 
-	src/line.cxx src/cylinder.cxx src/euch_vector.cxx src/lvector.cxx src/math_funcs.cxx )
+set( src src/main.cxx src/light.cxx src/renderable.cxx src/screen.cxx 
+	src/line.cxx src/euch_vector.cxx src/lvector.cxx src/math_funcs.cxx )
 add_executable( t_rend ${src})
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3 -pthead )
 
