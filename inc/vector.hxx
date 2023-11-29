@@ -1,33 +1,17 @@
 #include <common.hxx>
 
+#include <point.hxx>
+
 #ifndef euch_vector_class
 #define euch_vector_class
 
-class euch_vector {
+class euch_vector : public point {
 
   public:
-
-    float x;
-    float y;
-    float z;
-
-    euch_vector(){
-      this->x = 0;
-      this->y = 0;
-      this->z = 0;
-    }
-
-    euch_vector( float x, float y, float z ){
-      this->x = x;
-      this->y = y;
-      this->z = z;
-    }
-
-    void set_x( float x ){ this->x = x; }
-    void set_y( float y ){ this->y = y; }
-    void set_z( float z ){ this->z = z; }
-
-    void set_xyz( float x, float y, float z );
+ 
+    euch_vector() : point(){};
+    euch_vector( float x, float y, float z ) : point( x, y, z ){}
+    
 
     euch_vector operator+( euch_vector & other );
     euch_vector operator-( euch_vector & other );
