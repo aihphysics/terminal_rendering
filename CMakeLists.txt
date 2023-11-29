@@ -7,8 +7,8 @@ project( term_renderer)
 
 include_directories(inc)
 
-set( src src/main.cxx src/light.cxx src/renderable.cxx src/screen.cxx 
-	src/line.cxx src/euch_vector.cxx src/lvector.cxx src/math_funcs.cxx )
+set( src src/main.cxx src/renderable.cxx src/screen.cxx 
+	src/line.cxx src/vector.cxx src/math_funcs.cxx src/point.cxx )
 add_executable( t_rend ${src})
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O3 -pthead )
 

@@ -9,17 +9,17 @@ class line : public renderable{
   protected:
 
     line * connection;
-    euch_vector start;
-    euch_vector direction;
-    euch_vector step;
+    vector start;
+    vector direction;
+    vector step;
     double length;
 
   public:
     line ( screen * terminal, float x_start, float y_start, float z_start, float x_end, float y_end, float z_end ){
 
       this->terminal = terminal;
-      this->start = euch_vector( x_start, y_start, z_start);
-      euch_vector end( x_end, y_end, z_end);
+      this->start = vector( x_start, y_start, z_start);
+      vector end( x_end, y_end, z_end);
       direction = end-start; 
       length = direction.length();
       direction.normalise();

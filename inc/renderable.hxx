@@ -1,8 +1,7 @@
 #include <math.h>
 #include <common.hxx>
-#include <light.hxx>
 #include <screen.hxx>
-#include <euch_vector.hxx>
+#include <vector.hxx>
 
 #ifndef renderable_class
 #define renderable_class
@@ -16,12 +15,12 @@ class renderable {
     float x_acceleration, y_acceleration, z_acceleration;
 
     float v_rx, v_ry, v_rz;
-    light * light_source;
+    vector * light_source;
     screen * terminal;
 
-    euch_vector centre;
-    euch_vector * surface;
-    euch_vector * normal;
+    vector centre;
+    vector * surface;
+    vector * normal;
     int * point_type;
 
   public:
@@ -38,7 +37,7 @@ class renderable {
       this->z_rotation = z_rotation;
     }
   
-    euch_vector project( euch_vector point, screen * terminal );
+    vector project( vector point, screen * terminal );
 
 
 };

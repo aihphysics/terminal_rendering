@@ -10,9 +10,8 @@ void line::draw(float * output, float * z_buffer ){
   int len_max = length/0.01;
   for ( int len_idx = 0; len_idx <  len_max; len_idx++ ){
 
-
-    euch_vector increment = step*len_idx;
-    euch_vector point = start + increment;
+    vector increment = step*len_idx;
+    vector point = start + increment;
 
     point.rotate_x( x_rotation );
     point.rotate_y( y_rotation );
