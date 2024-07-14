@@ -1,9 +1,9 @@
 #include <common.hxx>
 
-#ifndef euch_vector_class
-#define euch_vector_class
+#ifndef vec_class
+#define vec_class
 
-class euch_vector {
+class vec {
 
   public:
 
@@ -11,13 +11,13 @@ class euch_vector {
     float y;
     float z;
 
-    euch_vector(){
+    vec(){
       this->x = 0;
       this->y = 0;
       this->z = 0;
     }
 
-    euch_vector( float x, float y, float z ){
+    vec( float x, float y, float z ){
       this->x = x;
       this->y = y;
       this->z = z;
@@ -29,17 +29,17 @@ class euch_vector {
 
     void set_xyz( float x, float y, float z );
 
-    euch_vector operator+( euch_vector & other );
-    euch_vector operator-( euch_vector & other );
-    euch_vector operator/( double len );
-    euch_vector operator*( double len );
-    float operator*( euch_vector & other );
+    vec operator+( vec & other );
+    vec operator-( vec & other );
+    vec operator/( double len );
+    vec operator*( double len );
+    float operator*( vec & other );
 
-    euch_vector & operator+=( euch_vector & other );
-    euch_vector & operator-=( euch_vector & other );
-    euch_vector & operator*=( euch_vector & other );
+    vec & operator+=( vec & other );
+    vec & operator-=( vec & other );
+    vec & operator*=( vec & other );
 
-    euch_vector cross( euch_vector & other );
+    vec cross( vec & other );
 
     float length();
     float square_length();
