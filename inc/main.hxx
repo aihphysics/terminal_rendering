@@ -9,18 +9,8 @@
 #include <numeric>
 
 #include <common.hxx>
-#include <light.hxx>
-#include <renderable.hxx>
 #include <screen.hxx>
-
-#include <euch_vector.hxx>
-#include <lvector.hxx>
-
-#include <sphere.hxx>
-#include <torus.hxx>
-#include <cube.hxx>
-#include <line.hxx>
-#include <cylinder.hxx>
+#include <vec.hxx>
 
 #include <getopt.h>
 

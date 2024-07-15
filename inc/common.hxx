@@ -3,7 +3,6 @@
 #define common_hxx
 
 class screen;
-class renderable;
 
 #endif
 

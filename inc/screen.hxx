@@ -1,7 +1,6 @@
 
 #include <common.hxx>
-#include <stdio.h>
-#include <euch_vector.hxx>
+#include <vec.hxx>
 
 #ifndef screen_class
 #define screen_class
@@ -14,7 +13,7 @@ class screen {
     float x_origin, y_origin, z_origin;
 
     // screen co-ordinates
-    euch_vector position;
+    vec position;
 
     // screen constants
     float K2;
@@ -25,7 +24,7 @@ class screen {
 
     screen ( float K1, float K2, int screen_width, int screen_height ){
 
-      position = euch_vector( 0, 0, K2 );
+      position = vec( 0, 0, K2 );
       this->K1 = K1;
       this->K2 = K2;
       this->screen_width = screen_width;
