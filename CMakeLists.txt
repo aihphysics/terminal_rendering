@@ -7,8 +7,8 @@ project( terminal_renderer )
 
 include_directories(inc)
 
-set( src/main.cxx src/screen.cxx src/vec.cxx src/obj.cxx )
-add_executable( rend ${src})
+set( sources src/main.cxx src/screen.cxx src/vec.cxx src/obj.cxx )
+add_executable( rend ${sources})
 add_compile_options(-std=c++11 -Werror -Wall -pedantic -Wextra -O2 -pthread )
 
 
