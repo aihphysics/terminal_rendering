@@ -1,7 +1,8 @@
-#include <common.hxx>
-
 #ifndef vec_class
 #define vec_class
+
+#include <iostream>
+#include <iomanip>
 
 class vec {
 
@@ -41,6 +42,8 @@ class vec {
 
     vec cross( vec & other );
 
+    friend std::ostream & operator<<( std::ostream & os, const vec & v );
+
     float length();
     float square_length();
 
@@ -51,7 +54,6 @@ class vec {
 
     void boost_x ( float beta );
     void normalise();
-
 
 };
 

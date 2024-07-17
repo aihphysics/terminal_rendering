@@ -1,6 +1,5 @@
-#include <vec.hxx>
 #include <math.h>
-
+#include <vec.hxx>
 
 vec vec::operator+( vec & other ){
 
@@ -58,6 +57,12 @@ vec vec::cross( vec & other ){
 
 }
 
+
+std::ostream & operator<<( std::ostream & os, const vec & v ){
+  os << std::setprecision(3) <<  "(" << v.x << "," << v.y << "," << v.z << ")";
+  return os;
+}
+
 float vec::length(){
 
     return std::sqrt(this->x*this->x + this->y*this->y + this->z*this->z);
@@ -111,10 +116,3 @@ void vec::boost_x( float beta ){
   x = x*( sqrt( 1-(beta*beta) ) );
 
 }
-
-
-
-
-
-
-
