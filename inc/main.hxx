@@ -8,7 +8,6 @@
 #include <thread>
 #include <numeric>
 
-#include <common.hxx>
 #include <screen.hxx>
 #include <vec.hxx>
 
