@@ -1,6 +1,6 @@
 
-#include <common.hxx>
 #include <vec.hxx>
+#include <cstdio>
 
 #ifndef screen_class
 #define screen_class
@@ -34,13 +34,17 @@ class screen {
       z_buffer = new float[screen_width*screen_height]();
 
     }
-    
+
     void set_size( int screen_width, int screen_height );
     void set_constants( float K2 );
     void set_constants( float K1, float K2 );
+
+    vec project( const vec & point );
+
     void clear_screen();
     void reset_frame();
     void draw_frame();
+
 
 
 };

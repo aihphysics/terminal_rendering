@@ -10,6 +10,13 @@ void screen::set_constants( float K1, float K2 ){
   this->K2 = K2;
 }
 
+vec screen::project( const vec & point ){
+  float z_inv = 1/point.z;
+  int x_p = (int) ((float)this->screen_width/2.0 + (this->K1)*z_inv*point.x);
+  int y_p = (int) ((float)this->screen_height/2.0 - (this->K1)*z_inv*point.y);
+  return vec( x_p, y_p, z_inv ); 
+}
+
 void screen::set_size( int screen_width, int screen_height ){
   this->screen_width = screen_width;
   this->screen_height = screen_height;
@@ -18,7 +25,6 @@ void screen::set_size( int screen_width, int screen_height ){
 void screen::reset_frame(){
   for ( int y = 0; y < screen_height; y++ ){
     for ( int x = 0; x < screen_width; x++ ){
-      //output[screen_width * y + x] = ' ';
       output[screen_width * y + x] = 0;
       z_buffer[screen_width * y + x] = 0;
     }
@@ -43,8 +49,6 @@ void screen::draw_frame(){
 
       float upper = output[screen_width * y + x];
       float lower = output[screen_width * (y+1) + x];
-			//int upper_color = ( upper <= 0.0f ) ? 256 : 232 + ( upper*23.0f );
-			//int lower_color = ( lower <= 0.0f ) ? 0  : 232 + ( lower*23.0f );
       int upper_color = ( upper <= 0.0f ) ? 15 : 232 + ( upper*23.0f );
 			int lower_color = ( lower <= 0.0f ) ? 15  : 232 + ( lower*23.0f );
 
