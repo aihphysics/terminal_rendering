@@ -1,6 +1,7 @@
 
 #include <vec.hxx>
 #include <cstdio>
+#include <obj.hxx>
 
 #ifndef screen_class
 #define screen_class
@@ -45,8 +46,9 @@ class screen {
     void reset_frame();
     void draw_frame();
 
-
+    void draw( const obj & object );
 
 };
+
 
 #endif

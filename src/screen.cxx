@@ -41,6 +41,34 @@ void screen::clear_screen(){
   printf( "\x1b[H" );
 }
 
+void screen::draw( const obj & object ){
+      
+  for ( const vec & vertex : object.vertices ){
+
+    vec point = vertex;
+
+    point.rotate( object.rotation );
+
+    point += object.centre;
+    point += this->position;
+    
+    float L = 1.0;
+
+    vec projected = project( point );
+
+    int x_p = projected.x;
+    int y_p = projected.y;
+    float z_inv = 1.0/projected.z;
+
+    if ( x_p > this->screen_width || y_p > this->screen_height || x_p < 0 || y_p < 0 ) continue;
+    if ( z_inv < z_buffer[this->screen_width * y_p + x_p] ) continue;
+    z_buffer[this->screen_width * y_p + x_p] = z_inv;
+    output[this->screen_width * y_p + x_p] = L;
+
+  }
+
+}
+
 void screen::draw_frame(){
 
   printf( "\x1b[H" );
@@ -62,6 +90,7 @@ void screen::draw_frame(){
   }
 
 }
+
 //printf( "▄" );
 //range 232-255
 //foreground
