@@ -1,7 +1,16 @@
-#include <main.hxx>
-#include <obj.hxx>
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <numeric>
+#include <chrono>
+#include <math.h>
+#include <thread>
 
+#include <obj.hxx>
+#include <screen.hxx>
+#include <vec.hxx>
+
+#include <getopt.h>
 
 using namespace std::chrono_literals;
 
@@ -20,7 +29,7 @@ int main(int argc, char * argv[], char * env[]){
 
 
   int option_index{0}, option{0};
-	int frame_goal = 24;
+	int frame_goal = 10;
 
   // 1 for surfaces, 2 for edges, 3 for vertices;
   int draw_level = 1;
@@ -35,7 +44,7 @@ int main(int argc, char * argv[], char * env[]){
 
   // constants for projection 
   // 50 is flat, 2 is tolerable, 1.0 is dizzying
-  float K2 = 5.0;
+  float K2 = 25.0;
   float K1 = screen_height*K2*(1/0.8);
   
   std::string obj_filepath = "";
@@ -73,10 +82,8 @@ int main(int argc, char * argv[], char * env[]){
   screen terminal( K1, K2, screen_width, screen_height );
 
   obj box = obj( obj_filepath );
+  box.set_position( 0, 0, 100 );
 
-  box.print();
-
-  return 0;
 
   // Draw loop, probably could be done better
   auto goal_time = std::chrono::milliseconds( (int) max_pause_length);
@@ -84,6 +91,10 @@ int main(int argc, char * argv[], char * env[]){
   
 		auto start = std::chrono::high_resolution_clock::now();
 
+    box.set_rotation( i/20.0, i/20.0, 0 );
+
+    // draw the box
+    terminal.draw( box );
 
     // draw the 'frame'
     terminal.draw_frame();
@@ -92,8 +103,7 @@ int main(int argc, char * argv[], char * env[]){
     if ( ( goal_time - duration ).count() > 0 ){
       std::this_thread::sleep_for( goal_time - duration );
     }
-
-
+  
 	}
 
   return 0;
