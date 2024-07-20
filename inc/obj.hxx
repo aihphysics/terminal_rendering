@@ -1,24 +1,27 @@
 #include <math.h>
 #include <vector>
-#include <vec.hxx>
-#include <stdexcept>
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
 
+#include <common.hxx>
+#include <vec.hxx>
+
+#ifndef obj_class
+#define obj_class
+
 /* 
  * enum for types of entries in an obj file
  * 
  * Limited types of entry, simplified obj compatibility
  */
-enum obj_entry{
+enum obj_entry {
   vertex,
   face,
   pass
 };
-
 
 /*
  * Split Strings
@@ -29,13 +32,7 @@ enum obj_entry{
  * @parameter string string to be split
  * @parameter delim delimiter to split string by
  */
-void split_string(std::vector<std::string> & split_line, const std::string & string, std::string delim ){
-  std::istringstream str_stream{ string };
-  std::string token = "";
-  while( getline( str_stream, token, *( delim.c_str() ) ) ){ 
-    split_line.push_back(token);
-  }
-}
+void split_string(std::vector<std::string> & split_line, const std::string & string, std::string delim );
 
 /*
  * obj_hash
@@ -46,30 +43,22 @@ void split_string(std::vector<std::string> & split_line, const std::string & str
  * @parameter str input string, pre-split, just the indicator
  * @return enum for the type of line
  */
-obj_entry obj_hash( const std::string & str ){
-  if ( str == "v" ){ return vertex; }
-  if ( str == "f" ){ return face; }
-  else { return pass; }
-}
+obj_entry obj_hash( const std::string & str );
 
-
-#ifndef obj_class
-#define obj_class
 
 /*
  * obj
  *
  * Class for importing and preparing .obj files for rendering
  */
-
-
 class obj {
 
   private:
     std::string filepath;
     std::vector<vec> vertices;
     std::vector<std::vector<int>> faces;
-
+    vec centre, rotation;
+    float beta_x;
 
   public:
 
@@ -116,6 +105,25 @@ class obj {
       std::cout << std::flush;
     }
 
+    void set_rotation( float x_rotation, float y_rotation, float z_rotation ){
+      this->rotation = vec(x_rotation, y_rotation, z_rotation);
+    }
+
+    void set_rotation( vec & rotation ){
+      this->rotation = rotation;
+    }
+
+    void set_position( float x_position, float y_position, float z_position ){
+      this->centre = vec(x_position, y_position, z_position);
+    }
+
+    void set_position( vec & position ){
+      this->centre = position;
+    }
+
+
+    friend screen;
+  
 };
 
 #endif
