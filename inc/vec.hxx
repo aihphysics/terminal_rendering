@@ -1,8 +1,8 @@
-#ifndef vec_class
-#define vec_class
-
 #include <iostream>
 #include <iomanip>
+
+#ifndef vec_class
+#define vec_class
 
 class vec {
 
@@ -36,9 +36,9 @@ class vec {
     vec operator*( double len );
     float operator*( vec & other );
 
-    vec & operator+=( vec & other );
-    vec & operator-=( vec & other );
-    vec & operator*=( vec & other );
+    vec & operator+=( const vec & other );
+    vec & operator-=( const vec & other );
+    vec & operator*=( const vec & other );
 
     vec cross( vec & other );
 
@@ -50,7 +50,8 @@ class vec {
     void rotate_x ( float x_rotation );
     void rotate_y ( float y_rotation );
     void rotate_z ( float z_rotation );
-    void rotate_xyz ( float x_rotation, float y_rotation, float z_rotation );
+    void rotate ( float x_rotation, float y_rotation, float z_rotation );
+    void rotate ( const vec & rotation );
 
     void boost_x ( float beta );
     void normalise();

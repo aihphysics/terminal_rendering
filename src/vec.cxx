@@ -13,7 +13,7 @@ vec vec::operator-( vec & other ){
 
 }
 
-vec & vec::operator+=( vec & other ){
+vec & vec::operator+=( const vec & other ){
 
   this->x += other.x;
   this->y += other.y;
@@ -22,7 +22,7 @@ vec & vec::operator+=( vec & other ){
 
 }
 
-vec & vec::operator-=( vec & other ){
+vec & vec::operator-=( const vec & other ){
 
   this->x -= other.x;
   this->y -= other.y;
@@ -109,6 +109,17 @@ void vec::rotate_z( float z_rotation ){
   y = -this->x*sin(z_rotation) + this->y*cos(z_rotation);
   x = x_temp;
 
+}
+
+void vec::rotate(float x_rotation, float y_rotation, float z_rotation   ){
+  rotate( vec( x_rotation, y_rotation, z_rotation ) );
+}
+
+
+void vec::rotate( const vec & rotation ){
+  this->rotate_x( rotation.x );
+  this->rotate_y( rotation.x );
+  this->rotate_z( rotation.x );
 }
 
 void vec::boost_x( float beta ){
