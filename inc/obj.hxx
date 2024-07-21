@@ -28,9 +28,9 @@ enum obj_entry {
  *
  * String splitting function
  *
- * @parameter split_line reference to vector for putting the split strings
- * @parameter string string to be split
- * @parameter delim delimiter to split string by
+ * @param split_line reference to vector for putting the split strings
+ * @param string string to be split
+ * @param delim delimiter to split string by
  */
 void split_string(std::vector<std::string> & split_line, const std::string & string, std::string delim );
 
@@ -40,7 +40,7 @@ void split_string(std::vector<std::string> & split_line, const std::string & str
  * Simplified hashing function for simple obj files
  * Will throw for unsupported obj file
  *
- * @parameter str input string, pre-split, just the indicator
+ * @param str input string, pre-split, just the indicator
  * @return enum for the type of line
  */
 obj_entry obj_hash( const std::string & str );
@@ -57,11 +57,21 @@ class obj {
     std::string filepath;
     std::vector<vec> vertices;
     std::vector<std::vector<int>> faces;
+
+    // position and rotation of the object
     vec centre, rotation;
+
+    // lorentz boost along x-axis
     float beta_x;
 
   public:
 
+    /* 
+     * Object constructor
+     * Parses simplified obj files, only processes vertex and face information data.
+     *
+     * @param filepath Location of .obj file.
+     */
     obj( const std::string & filepath ){
       this->filepath = filepath;
       std::ifstream input( filepath );
@@ -92,6 +102,10 @@ class obj {
       }
     };
 
+    /*
+     * Print vertices and face indices
+     * Function to output parsed object to stdouut
+     */
     void print(){
       std::cout << "Filepath: " << filepath << "\n" << "Vertices: " << "\n";
       for ( vec & vertex : vertices ){ std::cout << std::setw(4 ) << vertex << "\n"; }
@@ -105,23 +119,51 @@ class obj {
       std::cout << std::flush;
     }
 
+    /* 
+     * Rotate object
+     * Sets 3d rotation of object.
+     * @param x_rotation rotation around x axis in radians
+     * @param y_rotation rotation around y axis in radians
+     * @param z_rotation rotation around z axis in radians
+     */
     void set_rotation( float x_rotation, float y_rotation, float z_rotation ){
       this->rotation = vec(x_rotation, y_rotation, z_rotation);
     }
 
+
+    /* 
+     * Rotate object
+     * Sets 3d rotation of object.
+     * @param rotation rotation vector in radians around each of the axes
+     */
     void set_rotation( vec & rotation ){
       this->rotation = rotation;
     }
 
+    /* 
+     * Position object
+     * Sets 3d centre of the object.
+     * @param x_position position around x axis in radians
+     * @param y_position position around y axis in radians
+     * @param z_position position around z axis in radians
+     */
     void set_position( float x_position, float y_position, float z_position ){
       this->centre = vec(x_position, y_position, z_position);
     }
 
+    /* 
+     * Position object
+     * Sets 3d centre of object.
+     * @param position coordinate vector to centre the object on.
+     */
     void set_position( vec & position ){
       this->centre = position;
     }
 
-
+    /*
+     * Friend class of screen
+     * To allow rendering of the object to the buffers.
+     */
     friend screen;
   
 };
