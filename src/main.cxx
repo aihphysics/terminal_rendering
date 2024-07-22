@@ -81,6 +81,7 @@ int main(int argc, char * argv[], char * env[]){
   // Screen object, essentially a canvas.
   screen terminal( K1, K2, screen_width, screen_height );
 
+  // test box
   obj box = obj( obj_filepath );
   box.set_position( 0, 0, 100 );
 
@@ -91,6 +92,7 @@ int main(int argc, char * argv[], char * env[]){
   
 		auto start = std::chrono::high_resolution_clock::now();
 
+    // rotate the box
     box.set_rotation( i/20.0, i/20.0, 0 );
 
     // draw the box
@@ -99,6 +101,7 @@ int main(int argc, char * argv[], char * env[]){
     // draw the 'frame'
     terminal.draw_frame();
 
+    // accumulator reduction
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( std::chrono::high_resolution_clock::now() - start) ;
     if ( ( goal_time - duration ).count() > 0 ){
       std::this_thread::sleep_for( goal_time - duration );
