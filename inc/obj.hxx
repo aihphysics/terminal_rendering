@@ -5,6 +5,8 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
+#include <stdexcept>
+#include <functional>
 
 #include <common.hxx>
 #include <vec.hxx>
@@ -17,11 +19,14 @@
  * 
  * Limited types of entry, simplified obj compatibility
  */
-enum obj_entry {
+enum file_entry {
   vertex,
   face,
+  loop,
   pass
 };
+
+
 
 /*
  * Split Strings
@@ -38,13 +43,21 @@ void split_string(std::vector<std::string> & split_line, const std::string & str
  * obj_hash
  * 
  * Simplified hashing function for simple obj files
- * Will throw for unsupported obj file
  *
  * @param str input string, pre-split, just the indicator
  * @return enum for the type of line
  */
-obj_entry obj_hash( const std::string & str );
+file_entry obj_hash( const std::string & str );
 
+/*
+ * stl_hash
+ * 
+ * Hashing function for stl file lines
+ *
+ * @param str input string, pre-split, just the indicator
+ * @return enum for the type of line
+ */
+file_entry stl_hash( const std::string & str );
 
 /*
  * obj
@@ -64,18 +77,15 @@ class obj {
     // lorentz boost along x-axis
     float beta_x;
 
-  public:
-
     /* 
-     * Object constructor
-     * Parses simplified obj files, only processes vertex and face information data.
+     * Parse file
      *
-     * @param filepath Location of .obj file.
+     * parser for both obj and stl files
+     *
+     * @param input input file stream
+     * @param hash function for this filetype
      */
-    obj( const std::string & filepath ){
-      this->filepath = filepath;
-      std::ifstream input( filepath );
-
+    void parse_file( std::ifstream & input, std::function<file_entry(const std::string & str)> hash ){
       std::string line = "";
       std::vector< std::string > split = {};
       split.reserve( 10 );
@@ -85,7 +95,7 @@ class obj {
         split_string( split, line, " " );
         line = "";
         if ( split.size() <= 3 ){ continue; }
-        switch ( obj_hash( split.at( 0 ) ) ){
+        switch ( hash( split.at( 0 ) ) ){
           case( vertex ):
             vertices.push_back( vec( std::stof( split.at(1) ), std::stof( split.at(2) ), std::stof( split.at( 3 ) ) ) );
             break;
@@ -96,10 +106,39 @@ class obj {
                 [](const std::string & str){ return std::stoi( str ); } );
             faces.push_back( std::move(current_face) );
             break;
+          case( loop ):
+            std::runtime_error( "stl parsing not yet implemented" );            
           case( pass ):
             continue;
         }
       }
+    }
+
+  public:
+
+    /* 
+     * Object constructor
+     * Parses files, currently only processes vertex and face information data.
+     *
+     * @param filepath Location of file containing a 3d object.
+     */
+    obj( const std::string & filepath ){
+
+      this->filepath = filepath;
+      std::ifstream input( filepath );
+      
+      std::function< file_entry( const std::string & str )> hash;
+      if ( filepath.find( ".stl" ) != std::string::npos ){
+        hash = stl_hash;
+      } else if ( filepath.find( ".obj" ) != std::string::npos ){
+        hash = obj_hash;
+      } else {
+        throw std::runtime_error( "unsupported filetype" );
+      }
+      
+      parse_file( input, hash );
+
+      return; 
     };
 
     /*
